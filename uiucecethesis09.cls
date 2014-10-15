@@ -340,8 +340,7 @@
 \fi
 \newcommand\chaptertitlefont{\LARGE} %% (SR)
 \def\@chapter[#1]#2{%
-%\def\c@pch@ptitl@{\if@mixc@sech@p#1\else\MakeUppercase{#1}\fi} %% (JSC)
-\def\c@pch@ptitl@{#1} %% (KO)
+\def\c@pch@ptitl@{#1}
   \ifnum \c@secnumdepth >\m@ne
     \if@mainmatter
       \refstepcounter{chapter}%
@@ -400,7 +399,7 @@
   \setlength{\chaptertitleheight}{1.85in}
 \fi
 \def\@makechapterhead#1{%
-%  \def\capchaptitle{\if@mixc@sech@p#1\else\MakeUppercase{#1}\fi} %% (JSC)
+  \def\capchaptitle{#1}
   \vbox to \chaptertitleheight{
     \def\baselinestretch{1}\@normalsize
     \parindent \z@ \raggedright \normalfont
@@ -423,8 +422,7 @@
     \fi
     \interlinepenalty\@M
     \vspace*{\thesis@chapskip}%
-%    \chaptertitlefont \capchaptitle %% JSC
-    \chaptertitlefont #1
+    \chaptertitlefont \capchaptitle %% JSC
     \vfil
   }%
   \par\nobreak%

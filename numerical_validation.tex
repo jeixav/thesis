@@ -4,7 +4,7 @@ In this section, the solutions to the FPE obtained with the FEM are reproduced u
 
 To begin, recall that unperturbed dynamics are governed by a Hamiltonian
 \[
-\dot z = \bar \nabla K, \quad z_0 \in \Real^4.
+\dot z = \bar \nabla K, \quad z_0 \in \reals^4.
 \]
 After a canonical transformation, the dynamics of $z$ can be separated so that the fast dynamics are restricted to being in a 2-D plane. For the autoparametric oscillator, recalling Equation \eqref{E:vector-int}, the fast dynamics were given by
 \begin{align*}
@@ -58,11 +58,11 @@ All the samples are simulated for an equal number of time-steps of the macrosolv
 
 % FIXME The average should, perhaps, be weighed by the element areas.
 
-Results produced with this numerical approach are shown in Figures \ref{f:hmm sigma=.5} to \ref{f:hmm sigma=1.5}. These results bear a qualitative resemblance to the FEM results. Namely, as the noise intensity is increased, the probability distributions move away from the origin, but remain centered around the $K=0$ axis. The solutions shown in the Figures are not particularly smooth. Presumably smoother solutions could be produced, but producing the Figures shown takes several hours. Optimizing numerical parameters such as the time-step of the Euler-Maruyama solver and the time-span of the macrosolver may be necessary to avoid excessively long simulations. Parallelizing computations could also help.
+Results produced with this numerical approach are shown in Figures \ref{f:hmm sigma=.5} to \ref{f:hmm sigma=1.5}. These results bear a qualitative resemblance to the FEM results. Namely, as the noise intensity is increased, the probability distributions move away from the origin, but remain centered around the $K=0$ axis. The solutions shown in the Figures are not particularly smooth. Presumably smoother solutions could be produced, but producing the Figures shown takes several hours. Optimizing numerical parameters such as the time-step of the Euler-Maruyama solver and the time-span of the macrosolver may be necessary to avoid excessively long simulations.
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=\textwidth]{figures/hmm_pdf_sigma_.5.eps}
+\includegraphics[width=\textwidth]{figures/hmm_pdf_sigma_p5}
 \end{center}
 \caption{HMM solution for $\sigma = 0.5$. 1000 samples are used to produce this PDF.}
 \label{f:hmm sigma=.5}
@@ -78,13 +78,13 @@ Results produced with this numerical approach are shown in Figures \ref{f:hmm si
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=\textwidth]{figures/hmm_pdf_sigma_1.5.eps}
+\includegraphics[width=\textwidth]{figures/hmm_pdf_sigma_1p5}
 \end{center}
 \caption{HMM solution for $\sigma = 1.5$. 4000 samples are used to produce this PDF.}
 \label{f:hmm sigma=1.5}
 \end{figure}
 
-It is worth mentioning that producing the solutions shown in Figures \ref{f:hmm sigma=.5} to \ref{f:hmm sigma=1.5} take several hours whereas the solutions produced with the FEM takes no more than a few minutes. Establishing exact figures on the computational advantage of FEM methods over SDE methods would require additional work; numerical parameters should be chosen optimally, and parallelized algorithms should be implemented. Nonetheless, the large difference in computation times between the two methods suggests that averaging methods can lead to significantly faster computational methods. It seems plausible that in some circumstances, problems that have been deemed too complicated could be solved if stochastic averaging methods were used.
+It is worth mentioning that producing the solutions shown in Figures \ref{f:hmm sigma=.5} to \ref{f:hmm sigma=1.5} takes several hours whereas the solutions produced with the FEM takes no more than a few minutes. Establishing exact figures on the computational advantage of FEM methods over SDE methods would require additional work; numerical parameters should be chosen optimally. Nonetheless, the large difference in computation times between the two methods suggests that averaging methods can lead to significantly faster computational methods. It seems plausible that in some circumstances, problems that have been deemed too complicated could be solved if stochastic averaging methods were used.
 
 %%% Local Variables: 
 %%% mode: latex

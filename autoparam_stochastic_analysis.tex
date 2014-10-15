@@ -17,7 +17,7 @@ Periodically excited autoparametric systems have been studied extensively; see f
 
 A natural question is whether such saturation and transfer of energy take place in the presence of stationary random excitations (as opposed to deterministic periodic excitations). Although various papers have dealt with some aspects of this question, non have given completely satisfactory answers. This is primarily due to the complex interactions between, noise, nonlinearities and resonances. Our approach is to study these interactions via a \emph{novel dimensional-reduction} approach. The analysis hinges upon some recent abstract theories of stochastic dimensional reduction. We then use this reduced model to calculate some essential design-related statistical measures of response and stability (e.g., mean exit times and stationary measures).
 
-The important assumption in our analysis is that the dissipation and random perturbations be small. Of course this means that their effect will be visible only over a long time horizon. However, since the noise is small, the dynamics of the unperturbed system gives some structure to our analysis and organizing the effects of the random perturbation. In particular, the dynamics of the unperturbed system identify a reduced phase space (the orbit space) on which to carry out \emph{stochastic averaging}. While the classical theory of \emph{stochastic averaging} is a natural framework for such a program, the equations of interest contain \emph{resonance} and \emph{bifurcation}, which precludes a simple application of classical techniques. In particular, the resonance gives rise to an intermediate scale, and the bifurcations give rise to some non-standard singularities in the orbit space. Such an analysis allows us to carefully study the multivalent features of our system. See \citet{freidlin94:_random_pertur_of_hamil_system,freidlin98:_random_pertur_nonlin_oscil,namachchivaya01:_non_duffin_pol} and \citet{sowers02:_stoch_averag_with_flatt_hamil} for some related investigations.
+The important assumption in our analysis is that the dissipation and random perturbations are small. Of course this means that their effect will be visible only over a long time horizon. However, since the noise is small, the dynamics of the unperturbed system gives some structure to our analysis and organizing the effects of the random perturbation. In particular, the dynamics of the unperturbed system identify a reduced phase space (the orbit space) on which to carry out stochastic averaging. While the classical theory of stochastic averaging is a natural framework for such a program, the equations of interest contain resonances and bifurcations, which precludes a simple application of classical techniques. In particular, the resonance gives rise to an intermediate scale, and the bifurcations give rise to some non-standard singularities in the orbit space. See \citet{freidlin94:_random_pertur_of_hamil_system,freidlin98:_random_pertur_nonlin_oscil,namachchivaya01:_non_duffin_pol} and \citet{sowers02:_stoch_averag_with_flatt_hamil} for some related investigations.
 
 \section{Physical Model}
 \label{S:model}
@@ -33,7 +33,9 @@ m_p l^2 \ddot \varphi + d_p \dot\varphi + m_p l (g + \ddot y) \sin \varphi = 0
 where $m_o$, $d_o$ and $k$ are the mass, damping and the spring constant of the spring-mass system and $m_p \,$, $d_p$ and $l$ are the mass, damping and the length of the pendulum.
 \begin{figure}
 \begin{center}
-\includegraphics[width=\textwidth*7/8]{figures/schematic}
+\psfrag{k}{$k$}
+\psfrag{d}{$d$}
+\includegraphics[width=\textwidth*7/8]{figures/autoparam_schematic}
 \caption{Schematic of the autoparametric system governed by equations~\eqref{e:absorber}. The letter ``o'' denotes the mass and ``p'' denotes the pendulum.}
 \label{F:ap schematic}
 \end{center}
@@ -222,7 +224,7 @@ It is important to realize that there are three scales in~\eqref{E:standard1}. T
 \subsection{Conserved Quantities}
 \label{S:averagedequations}
 
-From the explicit formulas for $b^1$ in Appendix~\ref{A:autoparam nonlin vec fields} (where $q=1/2$), we see that for $x = (x_1,x_2,x_3,x_4) \in \Real^4$,
+From the explicit formulas for $b^1$ in Appendix~\ref{A:autoparam nonlin vec fields} (where $q=1/2$), we see that for $x = (x_1,x_2,x_3,x_4) \in \reals^4$,
 \[
 (\Tave b^1)(x) =
 \begin{pmatrix}
@@ -245,7 +247,7 @@ The Hamiltonian system
 has a second integral which is in involution with the Hamiltonian \eqref{E:Hamiltonian} (two integrals of motion are in involution if their Poisson bracket vanishes identically). Thus, the unperturbed four-dimensional Hamiltonian has \emph{two first integrals in involution}, namely, the Hamiltonian itself \eqref{E:Hamiltonian} and a second invariant or constant of motion (momentum variable)
 \begin{equation}
 \label{E:momentum}
-I(x)=(x_1^2+x_3^2)+\frac12\,(x_2^2+x_4^2).
+I(x) = (x_1^2+x_3^2)+\frac12\,(x_2^2+x_4^2).
 \end{equation}
 The invariant $I$ is functionally independent of $K$, exists globally and is single valued. 
 
@@ -294,7 +296,7 @@ The conjugate pairs are $(u_1,u_2)$ and $(\psi,I)$. This transformation yields
 \end{align}
 and the corresponding Hamiltonian is
 \begin{equation}
-K = \frac12 u_1 \left(I - (u_1^2 +u_2^2)\right)
+K = \frac12 u_1 (I - u_1^2 - u_2^2)
 \label{E:AvgH}
 \end{equation}
 System~\eqref{E:vector-int} has four fixed points. They are
@@ -330,7 +332,7 @@ As $I$ varies, the system described by \eqref{E:vector-int} can display bifurcat
 \begin{aligned}
 \dot z_t^I(u) &= \bar{\nabla} K(z_t^I(u), I), \quad z_0^I(u)=u =(u_1,u_2)\\
 \psi &= \int_{0}^{t} {D_{I} K(z_t^I(u), I) \ ds} + \psi_{0} \\ K
-&= \text{constant} \in \Real, \quad I = \text{constant} \in \Real^+
+&= \text{constant} \in \reals, \quad I = \text{constant} \in \reals^+
 \end{aligned}
 \end{equation}
 The dynamics in the $u$-space are completely integrable and represent a one parameter family of an one degree of freedom Hamiltonian system. The fixed points and the corresponding energy levels for the unperturbed system are given by
@@ -355,7 +357,7 @@ We have pointed out that that there are three time-scales involved in our averag
 \begin{equation}
 \begin{aligned}
 m_1(x) &\equiv \left(\Tave \left(F_1^2 + \mathfrak{f}_1 + \mathfrak{g}_1\right)\right)(x)\\
-&=-\frac{1}{32R}\left( \left(x_4^2-x_2^2 \right)x_3+2 x_2x_4x_1\right)\left(6R\left( x_1^2+x_3^2 \right)-x_2^2-x_4^2\right) \\
+&=-\frac{1}{32R}\left( \left(x_4^2-x_2^2 \right)x_3+2 x_1 x_2 x_4\right)\left(6R\left( x_1^2+x_3^2 \right)-x_2^2-x_4^2\right) \\
 &\quad -(\zeta_o+2\,\zeta_p) K +\frac12\mu x_3(x_2^2-x_4^2) - \mu x_1x_2x_4\\
 m_2(x)&\equiv\left(\Tave \left(F_2^2 + \mathfrak{f}_2 + \mathfrak{g}_2\right)\right)(x)\\
 &= 2 \sigma^2S_{\xi\xi}(1) -2\zeta_o(x_1^2+x_3^2) - \zeta_p(x_2^2 + x_4^2)
@@ -419,10 +421,10 @@ Using \eqref{E:drift2} in the $\Aave$-averaging operator yields on each leaf $\G
 \end{gather}
 \begin{gather}
 \begin{split}
-\Aa_{11}^i & = \frac{1}{\period_i(y)}\int_{0}^{\period_i(y)} a_{11}(u(t),y) dt\\
+\mathfrak a_{11}^i &= \frac{1}{\period_i(y)}\int_{0}^{\period_i(y)} a_{11}(u(t),y) dt\\
 &= \frac12 \sigma^2 S_{\xi\xi}(1) K^2 \frac{1}{\period_i}\int_0^{\period_i}
 \frac{1}{{u_1(t)}^2}dt\\
-&=\frac12\,{\sigma}^2S_{\xi\xi}(1){K}^2\,\frac{\INT_{i}^2}{\period_i}
+&= \frac12 \sigma^2 S_{\xi\xi}(1){K}^2 \frac{\INT_{i}^2}{\period_i}
 \end{split}\\
 \begin{split}
 \Aa_{12}^{i} &= \frac{1}{\period_i(y)}\int_{0}^{\period_i(y)} a_{12}(u(t),y)dt\\

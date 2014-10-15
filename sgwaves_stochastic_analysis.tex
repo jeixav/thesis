@@ -1,6 +1,6 @@
 \section{Introduction}
 
-Surface waves form at the free surface of a liquid. For additionally clarity, they are sometimes called surface gravity waves. This emphasizes that gravity (and not, for example, surface tension) is the dominant restoring force.
+Surface waves form at the free surface of a liquid. For additional clarity, they are sometimes called surface gravity waves. This emphasizes that gravity (and not, for example, surface tension) is the dominant restoring force.
 
 Surface waves have captured the interest of many scientists. Michael Faraday was among them and he was sufficiently successful to have a problem in surface wave motion named after him. In 1831, Faraday reported to the Royal Society \citep{faraday31:_acous_figur} on experiments he did in which a thin layer of water was placed on a vibrating membrane. Faraday established that the standing waves that form on the plate have an oscillation frequency equal to one-half the vertical forcing frequency used to produce them. It is due to this discovery that nowadays, many investigations in wave excitation are known under the rubric of the `Faraday problem.'
 
@@ -23,7 +23,7 @@ For a fluid particle with density $\rho$, pressure $p$ and viscosity $\nu$ (and 
 \begin{equation}
 \rho \left[ \frac{\partial \boldsymbol{u}}{\partial t} + (\boldsymbol{u} \cdot \nabla )\boldsymbol{u} \right] = - \nabla p + \rho \boldsymbol{g}+ \nu \nabla^2 \boldsymbol{u}. 
 \end{equation}
-This equation is known by many as the Navier-Stokes equation. We are working towards a Hamiltonian formulation, therefore we assume the fluid is invscid and the Navier-Stokes equation simplifies to the Euler equation
+This equation is known by many as the Navier-Stokes equation. We are working towards a Hamiltonian formulation, therefore we assume the fluid is inviscid and the Navier-Stokes equation simplifies to the Euler equation
 \begin{equation}
 \rho \left[ \frac{\partial \boldsymbol{u}}{\partial t} + (\boldsymbol{u} \cdot \nabla )\boldsymbol{u} \right] = - \nabla p + \rho \boldsymbol{g}.
 \end{equation}
@@ -43,10 +43,8 @@ z = \eta (x_1, x_2, t)
 \begin{equation}
 \frac{\partial \eta}{\partial t} + \nabla \eta \cdot \boldsymbol{u} = u_z \quad \text{at } z = \eta
 \end{equation}
-In the above, we have made use of the notation $\boldsymbol{u} = (u_{x_1}, u_{x_2}, u_z )$. The second condition at the free surface is known as the dynamic boundary condition. It reflects the fact that pressure changes continuously across the interface. The dynamic boundary condition is given by
-\begin{equation}
-\frac{\partial \phi}{\partial t} + \frac12 |\boldsymbol{u}|^2 + |\boldsymbol{g}|z = 0 \quad \text{at } z = \eta .
-\end{equation}
+In the above, we have made use of the notation $\boldsymbol{u} = (u_{x_1}, u_{x_2}, u_z )$.
+
 In our treatment, we take the fluid to be confined to a cylindrical tank of radius $a$ and depth $d$ (at rest the fluid is contained between $z = -d$ and $z = 0$.) This leads to boundary conditions at the lateral and bottom walls of the tank that state that there is no flow across these walls
 \begin{gather*}
 u_r = 0 \quad \text{at } r = a\\
@@ -93,12 +91,12 @@ a_{mn} = \delta_{mn} a_m + a_{lmn} q_l + \frac12 a_{jlmn} q_j q_l + O ( q^2 )
 \end{equation}
 The quantities $a_{lmn}$ and $a_{jlmn}$ are constants. The potential energy of the free-surface, displaced from its equilibrium position, is
 \begin{eqnarray}
-V & = & \rho \int dS \int^{\eta}_{z = 0} |\boldsymbol{g}| z dz \label{e:potential energy}\\
-& = & \frac{\rho S}{2} g q_n q_n. \nonumber
+V &=& \rho \int dS \int^{\eta}_{z = 0} |\boldsymbol{g}| z dz \label{e:potential energy}\\
+&=& \frac{\rho S}{2} g q_n q_n. \nonumber
 \end{eqnarray}
 The Lagrangian, which for convenience we normalize by $\rho S$, is
 \begin{eqnarray*}
-L & = & \frac{1}{\rho S} ( T - V )\\
+L &=& \frac{1}{\rho S} ( T - V )\\
 & = & \frac12 ( a_{mn} \dot{q}_m \dot{q}_n - g q_n q_n ) .
 \end{eqnarray*}
 and the Hamiltonian is
@@ -297,7 +295,7 @@ form} becomes
 With the equation in this form, we are able to apply a result from~\citet{khas'minskii66:_stoch_proc}. This result tells us that as $\epsilon \to 0$, $\tilde{\boldsymbol{x}}_t^\epsilon$ converges in probability to
 \begin{align*}
 \dot{\boldsymbol{x}}_t &= \Tave[\boldsymbol{b}^1(\boldsymbol{x}_t,t/\epsilon)] = \bar{\nabla}\Tave[H(\boldsymbol{x}_t)] = \bar{\nabla} K(\boldsymbol{x}_t), & t \geq 0\\
-\boldsymbol{x}_0 &= \boldsymbol x \in \Real^4
+\boldsymbol{x}_0 &= \boldsymbol x \in \reals^4
 \end{align*}
 The averaged Hamiltonian, $K$, is our first integral of motion.
 \begin{multline*}
@@ -410,6 +408,8 @@ The stochastic diffusion process that we will study is described in terms of the
 
 \begin{figure}
 \begin{center}
+\psfrag{x}{$K$}
+\psfrag{y}{$I$}
 \includegraphics[width=\textwidth*7/8,angle=0]{figures/HIdomain}
 \caption{$K-I$ domain}
 \label{f:HI domain}
@@ -419,9 +419,9 @@ The stochastic diffusion process that we will study is described in terms of the
 
 % \subsection{Evolution of the Integrals of Motion}
 
-% The ultimate goal of our analysis is to understand the effects of noise. The amplitude of the noise being small, its effects are seen only over long times. The effect of noise (and damping) is seen in the evolution of the two conserved quantities, $K$ and $I$. It seems natural therefore, to define the map $\mathcal{Y}: \Real^4 \to \Real^2$ by
+% The ultimate goal of our analysis is to understand the effects of noise. The amplitude of the noise being small, its effects are seen only over long times. The effect of noise (and damping) is seen in the evolution of the two conserved quantities, $K$ and $I$. It seems natural therefore, to define the map $\mathcal{Y}: \reals^4 \to \reals^2$ by
 % \begin{equation}
-% \mathcal{Y}(\boldsymbol{x}) \equiv (K(\boldsymbol{x}),I(\boldsymbol{x})), \qquad \boldsymbol{x}\in \Real^4.
+% \mathcal{Y}(\boldsymbol{x}) \equiv (K(\boldsymbol{x}),I(\boldsymbol{x})), \qquad \boldsymbol{x}\in \reals^4.
 % \end{equation}
 % Since $\lim_{\epsilon \to 0}\boldsymbol{x}^\epsilon_t =
 % \boldsymbol{x}_t$,
@@ -451,7 +451,7 @@ The stochastic diffusion process that we will study is described in terms of the
 % (\boldsymbol{X}^{\epsilon}_t,t/\epsilon^2) + \frac{1}{\epsilon}
 % g(\boldsymbol{X}^{\epsilon}_t,t/\epsilon^2), & \label{e:X}
 % t&\geq 0\\
-% \boldsymbol{X}^\epsilon_0& = \boldsymbol{x} \in \Real^4 \nonumber
+% \boldsymbol{X}^\epsilon_0& = \boldsymbol{x} \in \reals^4 \nonumber
 % \end{align}
 % \begin{align}
 % \dot{\boldsymbol{Y}}^{\epsilon}_t& = \frac{1}{\epsilon} F^1
@@ -560,7 +560,7 @@ The stochastic diffusion process that we will study is described in terms of the
 % Within each $\bar{\mathcal{I}}_i$, we use classical results
 % (e.g.~\citet{khas'minskii68:_ito}) to state that the generator of
 % the reduced Markov process is, for a function $f \in
-% C^2(\Real^2)$,
+% C^2(\reals^2)$,
 % \begin{equation} (\gen_{\mathcal{I}_i}^\dagger f)(\bm{y}) = \sum_{j=1}^2
 % \mathfrak{b}^i_{y_j}(\bm{y}) \frac{\partial f(\bm{y})}{\partial y_j} +
 % \frac12 \sum_{j,k = 1}^2 \mathfrak{a}^i_{y_j y_k}(\bm{y})

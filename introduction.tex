@@ -31,7 +31,7 @@ The mechanical systems analyzed in this thesis are governed by Hamiltonian dynam
 \label{e:hamiltonian}
 H(q,p) = H_0(q,p) + \epsilon H_1(q,p) + \epsilon^2 H_2(q,p) + \Order(\epsilon^3)
 \end{equation}
-with $q,p \in \Real^2$. The Hamiltonian dynamics are perturbed by a stochastic forcing function, $\sigma$, and to compensate for the energy input from forcing, a damping function, $\zeta$, is also introduced:
+with $q,p \in \reals^2$. The Hamiltonian dynamics are perturbed by a stochastic forcing function, $\sigma$, and to compensate for the energy input from forcing, a damping function, $\zeta$, is also introduced:
 \begin{gather*}
 dq_k = \frac{\partial H}{\partial p_k} dt,\\
 dp_k = -\frac{\partial H}{\partial q_k} dt + \epsilon^2 \zeta(q,p) dt + \epsilon \sigma(q,p) dt.
@@ -50,7 +50,7 @@ In this equation, $b^1$ is associated with Hamiltonian dynamics, $b^2$ with damp
 A key difference between typical stochastic averaging problems and stochastic averaging applied to mechanical systems now comes to light. Typically, stochastic averaging is applied to systems with two timescales, Equation \eqref{e:perturbed dynamics} however, contains three timescales: (i) the timescale associated with the time-dependent transformation from $(q_1,q_2,p_1,p_2) \mapsto (x_1,x_2,x_3,x_4)$; this is the shortest timescale of the system, (ii) the timescale associated with periodic motion along Hamiltonian orbits; this is an intermediate timescale and (iii) the timescale over which stochastic forcing, which is of small amplitude, has an effect; this is the longest timescale. These timescales are separated from one another by a factor of $\epsilon$. Typically, stochastic averaging would be applied to average out our intermediate timescale so as to obtain an averaged equation valid at our longest timescale. In order to arrive at such results for the problems presented in this thesis, a supplementary averaging step will be necessary. Specifically, a time averaging operator with a period equal to the period of the canonical transformation mentioned above will appear. This supplementary averaging operator is defined below.
 \begin{definition}[Time averaging operator]
 \label{d:Tave}
-For a function $\varphi \in C^\infty(\Real^4 \times \Real)$ which is $2\pi$ periodic in its last argument, define the time averaging operator $\Tave$ by
+For a function $\varphi \in C^\infty(\reals^4 \times \reals)$ which is $2\pi$ periodic in its last argument, define the time averaging operator $\Tave$ by
 \[
 (\Tave \varphi)(x)\equiv \frac{1}{2\pi}\int_0^{2\pi} \varphi(x,t) dt.
 \]
@@ -59,7 +59,7 @@ Stochastic averaging with this additional time-scale was first presented in \cit
 
 \subsection{Structure of the Unperturbed System}
 
-Having stated that stochastic averaging enables the analysis of the effects of small amplitude stochastic perturbations over long timescales, selection of the slow variables must now be considered. In the context of multiscale dynamical systems, knowing how to select good slow variables can be challenging. Recently, anistropic diffusion maps \citep{singer09:_detec} have been proposed as machinery that would help automate the discovery of slowly changing variables, however in this thesis we used the more traditional approach of relying on insight into the problem at hand for finding the slowly changing variables. For mechanical system with a Hamiltonian structure, it seems quite natural to select the Hamiltonian as a slow variable. It is the average of the Hamiltonian of Equation \eqref{e:hamiltonian} over its cyclic coordinates that gives the first integral of motion, $K$, defined as follows:
+Having stated that stochastic averaging enables the analysis of the effects of small amplitude stochastic perturbations over long timescales, selection of the slow variables must now be considered. In the context of multiscale dynamical systems, knowing how to select good slow variables can be challenging. Recently, anisotropic diffusion maps \citep{singer09:_detec} have been proposed as machinery that would help automate the discovery of slowly changing variables, however in this thesis we used the more traditional approach of relying on insight into the problem at hand for finding the slowly changing variables. For mechanical system with a Hamiltonian structure, it seems quite natural to select the Hamiltonian as a slow variable. It is the average of the Hamiltonian of Equation \eqref{e:hamiltonian} over its cyclic coordinates that gives the first integral of motion, $K$, defined as follows:
 \[
 K = \Tave[H_1].
 \]
@@ -72,7 +72,7 @@ where
 \[
 \bar \nabla \equiv \left(\frac{\partial}{\partial z_3}, -\frac{\partial}{\partial z_1}, \frac{\partial}{\partial z_4}, -\frac{\partial}{\partial z_2}\right)
 \]
-A key objective of this thesis is to treat 2-D averaging problems, thus two degree of freedom systems (i.e. systems in $\Real^4$) are taken as the starting point and their reduction to 2-D is sought. The second slow variable is introduced by setting the two modes of system \eqref{e:unperturbed dynamics} to be in low-order resonance with each other. This second slow variable is akin to an angular momentum and is denoted by $I$. Thus, the two slow variables that will be part of our analysis are $K$ and $I$, we combine them in the vector $y = (K,I)$.
+A key objective of this thesis is to treat 2-D averaging problems, thus two degree of freedom systems (i.e. systems in $\reals^4$) are taken as the starting point and their reduction to 2-D is sought. The second slow variable is introduced by setting the two modes of system \eqref{e:unperturbed dynamics} to be in low-order resonance with each other. This second slow variable is akin to an angular momentum and is denoted by $I$. Thus, the two slow variables that will be part of our analysis are $K$ and $I$, we combine them in the vector $y = (K,I)$.
 
 Before considering the dynamics of $y$, let us start by considering the geometric structure of space associated with the unperturbed system. This is important since the stochastically perturbed system evolves in the domain defined by the unperturbed system.
 
@@ -135,7 +135,7 @@ Since the gradient and symplectic gradient produce vectors perpendicular to each
 
 This demonstrates that the dynamics of $Y_t^\epsilon$ are indeed slow compared to those of $X_t^\epsilon$.
 
-For all problems treated in this thesis, it is a given that the fast process is a Markov process, which is to say a process for which the future is independent of everything but the present (delay differential equations do not satisfy this property.) Equation \eqref{e:fast sde} has a generator (\citep[\S 7.3]{oksendal98:_stoch_differ_equat}). For $\phi \in C^2(\Real^4 \times \Real)$ this generator is:
+For all problems treated in this thesis, it is a given that the fast process is a Markov process, which is to say a process for which the future is independent of everything but the present (delay differential equations do not satisfy this property.) Equation \eqref{e:fast sde} has a generator (\citep[\S 7.3]{oksendal98:_stoch_differ_equat}). For $\phi \in C^2(\reals^4 \times \reals)$ this generator is:
 \[
 (\gen^\epsilon \phi)(x,t) = \epsilon^{-1} (b^1,\nabla \phi)(x,t) + (\gen \phi)(x,t)
 \]
@@ -144,14 +144,14 @@ where
 (\gen \phi)(x,t) = \sum_{i = 1}^4 b_i^2(x,t) \frac{\partial \phi}{\partial x_i}(x) + \frac12 \sum_{i,j=1}^4 a_{ij}(x,t) \frac{\partial^2 \phi}{\partial x_i \partial x_j}(x)
 \]
 where $a_{ij}(x,t) \equiv (g(x,t) g^T(x,t))_{ij}$. The theory of stochastic averaging provides the formalism required to prove that in the limit of infinitesimally small $\epsilon$, the generator for
-$Y_t^\epsilon$ becomes decoupled from $X_t^\epsilon$. Effectively then, averaging becomes a method for dimensional reduction since a system in $\Real^4$ is approximated by one in $\Real^2$. Formally this result holds for infinitesimally small $\epsilon$.
+$Y_t^\epsilon$ becomes decoupled from $X_t^\epsilon$. Effectively then, averaging becomes a method for dimensional reduction since a system in $\reals^4$ is approximated by one in $\reals^2$. Formally this result holds for infinitesimally small $\epsilon$.
 
-The problem has now been setup to apply stochastic averaging theory. First, the results of stochastic averaging theory are stated and then the methods used to arrive at those results is explained. It must be noted that proofs for the results given below are not provided in this thesis, although in \citet{namachchivaya01:_unified_approac_noisy_nonlin_mathieu_type_system} similar results are proved. The principal difference between results in that reference and those used in this thesis is that in the reference, reduction from $\Real^2 \to \Real$ is analyzed, whereas here, the case of reduction from $\Real^4 \to \Real^2$ is treated. While this difference should not lead to significant changes, strictly speaking, the stochastic averaging formulas given below should be termed conjectures.
+The problem has now been setup to apply stochastic averaging theory. First, the results of stochastic averaging theory are stated and then the methods used to arrive at those results is explained. It must be noted that proofs for the results given below are not provided in this thesis, although in \citet{namachchivaya01:_unified_approac_noisy_nonlin_mathieu_type_system} similar results are proved. The principal difference between results in that reference and those used in this thesis is that in the reference, reduction from $\reals^2 \to \reals$ is analyzed, whereas here, the case of reduction from $\reals^4 \to \reals^2$ is treated. While this difference should not lead to significant changes, strictly speaking, the stochastic averaging formulas given below should be termed conjectures.
 
 To begin, an averaging operator is defined.
 \begin{definition}[Hamiltonian orbit averaging operator]
 \label{d:Aave}
-For a function $\varphi \in C^\infty(\Real^4)$, define averaging operator acting over Hamiltonian orbits, $\Aave$ by
+For a function $\varphi \in C^\infty(\reals^4)$, define averaging operator acting over Hamiltonian orbits, $\Aave$ by
 \[
 (\Aave \varphi) (y) \equiv \frac{1}{\period(y)} \int_0^{\period(y)} \varphi(z_s(x)) ds
 \]
@@ -184,7 +184,7 @@ It's worth pointing out that classical stochastic averaging theory, i.e. \citet{
 \begin{definition}[Generator of the reduced Markov process]
 \label{d:reduced generator}
 The generator of the reduced Markov process is, for a function $f \in
-C^2(\Real^2)$,
+C^2(\reals^2)$,
 \[
 (\gen_i^\dagger f)(y) = \sum_{j=1}^2
 \mathfrak{b}^i_j(y) \frac{\partial f(y)}{\partial y_j} +
@@ -217,11 +217,11 @@ The Wiener process of the fast process given in Equation \eqref{e:fast sde} is g
 \]
 where $B(\Omega)$ denotes the space of Borel measures on $\Omega$.
 
-The martingale problem is used because it gives an alternative formulation for the existence and uniqueness of weak solutions of stochastic differential equations (SDEs). Classical existence and uniqueness properties of are proved using Holder continuity of the SDE's coefficient, but such conditions are too strong to deal with the topology of the reduced space, which consists of leaves with edges that have singularities due to the homoclinic structure of the fast deterministic dynamics. Formally, the martingale problem is stated as follows \citep{rogers00:_diffus_markov}. Denote an SDE by:
+The martingale problem is used because it gives an alternative formulation for the existence and uniqueness of weak solutions of stochastic differential equations (SDEs). Classical existence and uniqueness properties of are proved using Holder continuity of the SDE's coefficients, but such conditions are too strong to deal with the topology of the reduced space, which consists of leaves with edges that have singularities due to the homoclinic structure of the fast deterministic dynamics. Formally, the martingale problem is stated as follows \citep{rogers00:_diffus_markov}. Denote an SDE by:
 \[
 dX = b(X,t) dt + \sigma(X,t) dW
 \]
-Suppose $X$ is a weak solution to this equation starting at $y \in \Real^n$. Let $\prob^y$ be the law of $X$; $\prob^y$ is a probability measure on $(\Omega^n,\filt_t^n)$. Then $\prob^y$ has the following properties
+Suppose $X$ is a weak solution to this equation starting at $y \in \reals^n$. Let $\prob^y$ be the law of $X$; $\prob^y$ is a probability measure on $(\Omega^n,\filt_t^n)$. Then $\prob^y$ has the following properties
 \begin{enumerate}
 \item $\prob^y(x_0 = y) = 1$
 \item under $\prob^y$, for each $f \in C^\infty(\real^n)$
@@ -231,12 +231,12 @@ M_t^f \equiv f(x_t) - f(x_0) - \int_0^t L f(x,s) ds
 where $L$ denotes the SDE's generator, is an $\filt_t^n$ martingale.
 \end{enumerate}
 
-For the fast process, $X_t^\epsilon$, the existence and uniqueness of weak solutions is assured by the fact that \eqref{e:fast sde} is a well-behaved SDE. Thus, by the martingale problem we can state that, for $f \in C^2(\Real^4 \times \Real)$ a function $2\pi$-periodic in its last argument,
+For the fast process, $X_t^\epsilon$, the existence and uniqueness of weak solutions is assured by the fact that \eqref{e:fast sde} is a well-behaved SDE. Thus, by the martingale problem we can state that, for $f \in C^2(\reals^4 \times \reals)$ a function $2\pi$-periodic in its last argument,
 \[
 M_t^{f,\epsilon} \equiv f(X_t,t/\epsilon^2) - \int_0^t \epsilon^{-2} \frac{\partial f}{\partial s}(X_s,s/\epsilon^2) + (\gen^\epsilon f)(X_s,s/\epsilon^2) ds,
 \]
 % FIXME Where does the \order(\epsilon^{-2}) term come from?
-is a martingale with respect to the filtration ${\filt_t; t \geq 0}$ under the probability measure $\prob^\epsilon$. An alternative form of the martingale problem is used in proofs \citep{ethier86:_markov_process}. If $0 \leq r_1 < r_2 \dots < r_n \leq s < t$ and ${\phi_j; j = 1,2 \dots n} \in C_b(\Real^n)$, then
+is a martingale with respect to the filtration ${\filt_t; t \geq 0}$ under the probability measure $\prob^\epsilon$. An alternative form of the martingale problem is used in proofs \citep{ethier86:_markov_process}. If $0 \leq r_1 < r_2 \dots < r_n \leq s < t$ and ${\phi_j; j = 1,2 \dots n} \in C_b(\reals^n)$, then
 \begin{multline*}
 \Expectation^\epsilon \Big[\Big\{f(X_t) - f(X_s) - \int_s^t \epsilon^{-2} \frac{\partial f}{\partial s}(X_u,u/\epsilon^2) \\
 + (\gen^\epsilon f)(X_u,u/\epsilon^2) du\Big\} \prod_{j=1}^{n} \phi_j(X_{r_j})\Big] = 0.
@@ -295,11 +295,11 @@ and
 L^\epsilon_2(x,t) \equiv \frac{1}{\epsilon} \Big\{( b^1, \nabla K)(x,t)\frac{\partial f^\epsilon}{\partial k}(K(x),I(x))\\
 + (b^1, \nabla I)(x,t)\frac{\partial f^\epsilon}{\partial i}(K(x),I(x))\Big\}
 \end{multline*}
-for all $x \in \Real^4$ and $t \ge 0$. The fastest variation is the oscillation of coefficients, which has period $\epsilon^2$; the second-fastest variation is the motion around the orbits of $z$; these oscillations have period $\epsilon$. Thus we should have
+for all $x \in \reals^4$ and $t \ge 0$. The fastest variation is the oscillation of coefficients, which has period $\epsilon^2$; the second-fastest variation is the motion around the orbits of $z$; these oscillations have period $\epsilon$. Thus we should have
 \[
 \int_0^t L^\epsilon_1(X_u,u/\epsilon^2)du \approx \int_0^t (\Tave L^\epsilon_1)(X_u)du \approx \int_0^t(\Aave \Tave L^\epsilon_1)(K(X_u),I(X_u)) du.
 \]
-It should be possible to prove this using standard averaging techniques, as was done for reduction from $\Real^2 \to \Real$ in \citet{namachchivaya01:_unified_approac_noisy_nonlin_mathieu_type_system}.
+It should be possible to prove this using standard averaging techniques, as was done for reduction from $\reals^2 \to \reals$ in \citet{namachchivaya01:_unified_approac_noisy_nonlin_mathieu_type_system}.
 The analysis of $L^\epsilon_2$ is a bit more delicate since it contains large fluctuations, which are of order one on average.
 
 \section{Thesis Outline}

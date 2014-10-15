@@ -1,9 +1,9 @@
 \section{Introduction}
 
-In this chapter, we turn our attention to producing solutions with the results of stochastic averaging theory. Specifically, stationary probability distribution functions are produced. First, the Fokker--Planck equation is derived. Then a finite element formulation of the Fokker--Planck problem is presented. Solutions for the surface gravity waves model and the autoparametric oscillator are then shown. Finally, the finite element results are validated with a sample path method.
+We turn our attention to producing solutions with the results of stochastic averaging theory. Specifically, stationary probability distribution functions are produced. First, the Fokker--Planck equation is derived. Then a finite element formulation of the Fokker--Planck problem is presented. Solutions for the surface gravity waves model and the autoparametric oscillator are then shown. Finally, the finite element results are validated with a sample path method.
 
 \section{Derivation of the Fokker--Planck Equation}
-
+% FIXME Inconsistent notation for p(y,t) (vs. p(t,y))
 Before starting to derive the Fokker--Planck equation, it is necessary to consider how inner products behave under changes of variables. Specifically, it is found that if the area $A(y_1)$ is bounded by the curve $E(y_1)$, functions $f$ and $g$ satisfy $f(u_1,u_2,\psi,I) = f(y_1(u_1,u_2,I),y_2(u_1,u_2,I))$ and $g(u_1,u_2,\psi,I) = g(y_1(u_1,u_2,I),y_2(u_1,u_2,I))$, then
 \begin{multline*}
 \int_{A(y_1)} f(u_1,u_2,\psi,I) g(u_1,u_2,\psi,I) du_1 du_2 d\psi dI\\
@@ -28,23 +28,18 @@ After substituting the assumed functional form of $f$ and $g$, it follows that t
 \]
 
 Now we derive the Fokker-Planck equation (FPE) for the density of $\{(k_t, I_t); t \ge 0\}$. We present a rigorous derivation that takes care of the killed process at $I^*$ and examine the stationary behavior of the FPE when $I^*= \infty$. We assume that there is a $p\in C^\infty((0,\infty)\times \bigcup_{i=1}^n \Gamma_i )$ and a $p_{i}^\BDY\in C^\infty((0,\infty))$ such that for any $f\in \mathscr{D}_\Graph^\dag$
-% FIXME Summation $i=1,2$ is specific to autoparametric problem, need to generalize.
-\begin{equation}
+\begin{multline}
 \label{E:expectation}
-\begin{aligned}
-\Expectation^\epsilon_x \left[f(k_t, I_t) \right] &= \sum_{i=1}^n (\pm) \int_{\Gamma_i} f_i(y) p_i(t,y) \period_i(y) dk\,dI\\
-&\quad + \sum_{i=1}^n (\pm) \int_0^{k_i^c(I^*)} f_i(k,I^*) \period_{i}(k,I^*) p_{i}^\BDY(k,t) dk
-\end{aligned}
-\end{equation}
-where the `$+$' sign is taken on the leaves where the coordinate $k$ is greater than $K({\Order})$ and the `$-$' sign is taken on the leaves where the coordinate $k$ is less than $K({\Order})$.) $p_i(t,\cdot)$ and $p_{i}^\BDY(t)$ are the density of the law of $(k_t, I_t)$ relative to Lebesgue measure on $\bigcup_{i=1}^n \Gamma_i$ and a Dirac mass at $I^*$. Since we kill $(k_t, I_t)$ at $I^*$, mass may accumulate there, necessitating a Dirac measure at $I^*$.
+\Expectation^\epsilon_x \left[f(k_t, I_t) \right] = \sum_{i=1}^n (\pm) \int_{\Gamma_i} f_i(y) p_i(y,t) \period_i(y) dk dI\\
++ \sum_{i=1}^n (\pm) \int_{k^i} f_i(k,I^*) \period_{i}(k,I^*) p_i^\BDY(k,t) dk
+\end{multline}
+where the `$+$' sign is taken on the leaves where the coordinate $k$ is greater than $K({\Order})$ and the `$-$' sign is taken on the leaves where the coordinate $k$ is less than $K({\Order})$.) $p_i(y,t)$ and $p_{i}^\BDY(t)$ are the density of the law of $(k_t, I_t)$ relative to Lebesgue measure on $\bigcup_{i=1}^n \Gamma_i$ and a Dirac mass at $I^*$. Since we kill $(k_t, I_t)$ at $I^*$, mass may accumulate there, necessitating a Dirac measure at $I^*$.
 Differentiating~\eqref{E:expectation} with respect to time yields
-\begin{equation}
-\begin{aligned}
-\frac{\partial}{\partial t} \Expectation^\epsilon_x\left[ f(k_t, I_t) \right] &= \sum_{i=1}^n (\pm) \int_{\Gamma_i} f_{i}(y) \frac{\partial p_{i}}{\partial t}(t,y) \period_{i}(y) dk dI\\
-&\quad+\sum_{i=1}^n (\pm) \int_0^{k_i^c(I^*)}\!\! f_{i}(k,\,I^*) \, \period_{i}(k,\,I^*) \, \frac{\partial p_{i}^\BDY}{\partial t}(k,\,t) \, dk
-\end{aligned}
+\begin{multline}
 \label{E:exp-prime}
-\end{equation}
+\frac{\partial}{\partial t} \Expectation^\epsilon_x\left[ f(k_t, I_t) \right] = \sum_{i=1}^n (\pm) \int_{\Gamma_i} f_i(y) \frac{\partial p_i}{\partial t}(t,y) \period_i(y) dk dI\\
++ \sum_{i=1}^n (\pm) \int_{k_i} f_{i}(k,\,I^*) \period_{i}(k,I^*)  \frac{\partial p_i^\BDY}{\partial t}(k,t) dk
+\end{multline}
 On the other hand
 \begin{equation}
 \begin{aligned}
@@ -91,11 +86,10 @@ Applying the divergence theorem to the last term on the left side of~\eqref{E:st
 \end{multline}
 where
 \[
-\gen^{\dagger,\text{adj}}_i = \frac{1}{\period_i(y)} \sum_{j=1}^2 \frac{\partial}{\partial y_j}(\mathring{\mathfrak b}_j(y) p(y)) - \frac{1}{2 \period_i(y)} \sum_{j,k=1}^2 \frac{\partial^2}{\partial y_j \partial y_k} (\mathring{\mathfrak a}_{jk}(y) p(y))
+\gen^{\dagger,\text{adj}}_i = \frac{1}{\period_i(y)} \sum_{j=1}^2 \frac{\partial}{\partial y_j}(\mathring{\mathfrak b}_j(y) p(y)) - \frac{1}{2 \period_i(y)} \sum_{j,k=1}^2 \frac{\partial^2}{\partial y_j \partial y_k} (\mathring{\mathfrak a}_{jk}(y) p(y)).
 \]
-and
 
-For the autoparametric problem, each $\partial\Gamma_i$ consistes of a vertical line ($\nu_2=0$) representing the vertex ${\Order}\equiv[0,I^*]$, a horizontal ($\nu_1=0$) line ${\bigb}\equiv[0,{k_i^c(I^*)}]$, at which the process is killed ($I=I^*$), and a curved line ${\bigc_i}\equiv \{(k,I)\in \Real^2: k= (-1)^iI\sqrt{3I}/9\}$, for $i=1,2$ representing the fixed points. Hence, by explicitly expressing the boundary $\partial\Gamma_i$, equation~\eqref{E:step6} can be rewritten as
+For the autoparametric problem, each $\partial\Gamma_i$ consists of a vertical line ($\nu_2=0$) representing the vertex ${\Order}\equiv[0,I^*]$, a horizontal ($\nu_1=0$) line ${\bigb}\equiv[0,{k_i^c(I^*)}]$, at which the process is killed ($I=I^*$), and a curved line ${\bigc_i}\equiv \{(k,I)\in \reals^2: k= (-1)^iI\sqrt{3I}/9\}$, for $i=1,2$ representing the fixed points. Hence, by explicitly expressing the boundary $\partial\Gamma_i$, equation~\eqref{E:step6} can be rewritten as
 \begin{multline}
 \sum_{i=1}^n (\pm) \int_{\Gamma_i} \left\{\frac{\partial p_i}{\partial t}(t,y) - \mathring \gen^{\dagger,\text{adj}}_{i} p_{i} (t,y) \right\} f_i(y) \period_{i}(y) dk dI\\
 + \sum_{i=1}^n (\pm) \int_{\bigb} \left[\frac{\partial p_i^\BDY}{\partial t}(t,\,k) - J_2^{i}(t,k,I^*) \right] f_i(k,I^*) dk\\
@@ -118,7 +112,7 @@ Hence $p_i$ satisfies
 \begin{enumerate}
 \item the FPE,
 \begin{equation}
-\frac{\partial p_i}{\partial t}(t,y) = \gen^{\dagger,\text{adj}}_{i} p_{i} (t,y) \; \text{ for } t > 0 \text{ and } z \in \Gamma_i
+\frac{\partial p_i}{\partial t}(t,y) = \gen^{\dagger,\text{adj}}_i p_i(t,y) \; \text{ for } t > 0 \text{ and } y \in \Gamma_i
 \label{E: FPE time-dependent}
 \end{equation}
 
@@ -133,11 +127,9 @@ Hence $p_i$ satisfies
 \eval{\sum_{j=1}^2 \left(\mathfrak b_j^i(y) p_i(t,y) - \frac12 \sum_{k=1}^2 \frac{\partial}{\partial y_k} \left(\Aa_{jk}^i(y)\,p_{i}(t,y)\right)\right) \cdot \nu_j}_{y = \bigc_i} = 0
 \label{E:BC elliptic}
 \end{equation}
-
 \item killing of the process when the energy reaches $I^*$, i.e.,
 \begin{equation}
-\lim_{y_2 \to I^*} p_i(t,y) = 0, \quad \text{for} \quad
-i=1,2
+\lim_{y_2 \to I^*} p_i(t,y) = 0.
 \label{E:BC upper}
 \end{equation}
 \end{enumerate}
@@ -187,44 +179,44 @@ V &= \left\{v \in H^1(\mathfrak I): \int_\mathfrak I v dz = 1\right\} &\text{and
 % FIXME Change notation: \mathfrak{I} -> \Gamma
 Note that the definitions above do not reflect that we have two leaves, $\mathfrak{I}_{1,2}$ -- we start our presentation by considering the simpler case where the domain of the FPE is a single leaf. The next step is to derive a bilinear form corresponding to the FPE. The weak form of the steady-state FPE, equation~\eqref{E:FPE}, is
 \[
-\int_\mathfrak I \phi (\nabla \cdot J) dz = 0
+\int_\mathfrak I \phi (\nabla \cdot J) dy = 0
 \]
 where $\phi \in W$ and the $p \in V$ (recall from equation~\eqref{E:prob flux} that $p$ is contained within $J$.) Integration by parts gives
 \[
--\int_\mathfrak I \nabla \phi \cdot J dz + \int_{\partial \mathfrak I} \phi J \cdot \nu d\sigma(z) = 0
+-\int_\mathfrak I \nabla \phi \cdot J dy + \int_{\partial \mathfrak I} \phi J \cdot \nu d\sigma(y) = 0
 \]
 Separating $\partial \mathfrak I$ into an exterior boundary and an interior boundary (i.e. the gluing edge),
 \begin{equation}
--\int_\mathfrak I \nabla \phi \cdot J dz + \int_{\partial \mathfrak I_\bigc} \phi J \cdot \nu d\sigma(z) + \int_{\partial \mathfrak I_\mathcal{O}} \phi J \cdot \nu d\sigma(z) = 0
+-\int_\mathfrak I \nabla \phi \cdot J dy + \int_{\partial \mathfrak I_\bigc} \phi J \cdot \nu d\sigma(y) + \int_{\partial \mathfrak I_\mathcal{O}} \phi J \cdot \nu d\sigma(y) = 0
 \label{E:FPE weak}
 \end{equation}
 On $\partial \mathfrak I_\bigc$, using equation~\eqref{E:BC elliptic 2} gives
 \[
-J \cdot \nu = -\frac{1}{2 \period(z)} \sum_{j,k=1}^2 \mathring{\mathfrak{a}}_{jk} \frac{\partial \period(z)}{\partial z_k} \nu_j p(z)
+J \cdot \nu = -\frac{1}{2 \period(y)} \sum_{j,k=1}^2 \mathring{\mathfrak{a}}_{jk} \frac{\partial \period(y)}{\partial y_k} \nu_j p(y)
 \]
 Thus equation~\eqref{E:FPE weak} becomes
 \begin{equation}
-\int_\mathfrak I \nabla \phi \cdot J dz + \int_{\partial \mathfrak I_\bigc} \frac{\phi}{2 \period(z)} \sum_{j,k=1}^2 \mathring{\mathfrak{a}}_{jk} \frac{\partial \period(z)}{\partial z_k} \nu_j p(z) d\sigma(z) + \int_{\partial \mathfrak I_\mathcal{O}} \phi J \cdot \nu d\sigma(z) = 0
+\int_\mathfrak I \nabla \phi \cdot J dy + \int_{\partial \mathfrak I_\bigc} \frac{\phi}{2 \period(y)} \sum_{j,k=1}^2 \mathring{\mathfrak{a}}_{jk} \frac{\partial \period(y)}{\partial y_k} \nu_j p(y) d\sigma(y) + \int_{\partial \mathfrak I_\mathcal{O}} \phi J \cdot \nu d\sigma(y) = 0
 \label{E:FPE weak 2}
 \end{equation}
 Now the finite-element problem is formulated so as to treat both leaves together. In so doing, we must redefine the quantities given in~\eqref{E:weak spaces}, we have
 \begin{align*}
-V &= \left\{v \in H^1(\mathfrak I_1 \cup \mathfrak I_2): \int_\mathfrak{I_1} v dz + \int_\mathfrak{I_2} v dz = 1\right\}\\
-W &= \left\{v \in H^1(\mathfrak I_1 \cup \mathfrak I_2): \int_\mathfrak{I_1} v dz + \int_\mathfrak{I_2} v dz = 0\right\}
+V &= \left\{v \in H^1(\mathfrak I_1 \cup \mathfrak I_2): \int_\mathfrak{I_1} v dy + \int_\mathfrak{I_2} v dy = 1\right\}\\
+W &= \left\{v \in H^1(\mathfrak I_1 \cup \mathfrak I_2): \int_\mathfrak{I_1} v dy + \int_\mathfrak{I_2} v dy = 0\right\}
 \end{align*}
 and~\eqref{E:FPE weak 2} and the results of Appendix~\ref{A:gluing BC simplification} on simplifications of the conservation of probability flux condition give
 \begin{multline*}
-\int_{\mathfrak I_1} \nabla \phi \cdot J^1 dz + \int_{\partial \mathfrak I_{\bigc_1}} \frac{\phi}{2 \period(z)} \sum_{j,k=1}^2 \mathring{\mathfrak{a}}_{jk}^1 \frac{\partial \period(z)}{\partial z_k} \nu_j^1 p_1(z) d\sigma(z)\\
-+ \int_{\mathfrak I_2} \nabla \phi \cdot J^2 dz + \int_{\partial \mathfrak I_{\bigc_2}} \frac{\phi}{2 \period(z)} \sum_{j,k=1}^2 \mathring{\mathfrak{a}}_{jk}^2 \frac{\partial \period(z)}{\partial z_k} \nu_j^2 p_2(z) d\sigma(z) = 0
+\int_{\mathfrak I_1} \nabla \phi \cdot J^1 dy + \int_{\partial \mathfrak I_{\bigc_1}} \frac{\phi}{2 \period(y)} \sum_{j,k=1}^2 \mathring{\mathfrak{a}}_{jk}^1 \frac{\partial \period(y)}{\partial y_k} \nu_j^1 p_1(y) d\sigma(y)\\
++ \int_{\mathfrak I_2} \nabla \phi \cdot J^2 dy + \int_{\partial \mathfrak I_{\bigc_2}} \frac{\phi}{2 \period(y)} \sum_{j,k=1}^2 \mathring{\mathfrak{a}}_{jk}^2 \frac{\partial \period(y)}{\partial y_k} \nu_j^2 p_2(y) d\sigma(y) = 0
 \end{multline*}
 % FIXME Explain that can essentially ignore gluing BC, but in evaluating coefficients, need to place quadrature points away from gluing edge since certain coefficients are infinite there.
 Since on the edge $\partial \mathfrak I_\mathcal{O}$ equation~\eqref{E:cpfc simplified} holds and $\mathring{\mathfrak{a}}_{11}^1 = \mathring{\mathfrak{a}}_{11}^2$, the equation above gives the bilinear form we sought:
 \begin{multline}
 \label{E:weak FPE}
-L(p,\phi) = \int_{\mathfrak I_1} \nabla \phi \cdot J^1 dz + \int_{\partial \mathfrak I_{\bigc_1}} \frac{\phi}{2 \period(z)} \sum_{j,k=1}^2 \mathring{\mathfrak{a}}_{jk}^1 \frac{\partial \period(z)}{\partial z_k} \nu_j^1 p_1(z) d\sigma(z)\\
-+ \int_{\mathfrak I_2} \nabla \phi \cdot J^2 dz + \int_{\partial \mathfrak I_{\bigc_2}} \frac{\phi}{2 \period(z)} \sum_{j,k=1}^2 \mathring{\mathfrak{a}}_{jk}^2 \frac{\partial \period(z)}{\partial z_k} \nu_j^2 p_2(z) d\sigma(z)
+L(p,\phi) = \int_{\mathfrak I_1} \nabla \phi \cdot J^1 dy + \int_{\partial \mathfrak I_{\bigc_1}} \frac{\phi}{2 \period(y)} \sum_{j,k=1}^2 \mathring{\mathfrak{a}}_{jk}^1 \frac{\partial \period(y)}{\partial y_k} \nu_j^1 p_1(y) d\sigma(y)\\
++ \int_{\mathfrak I_2} \nabla \phi \cdot J^2 dy + \int_{\partial \mathfrak I_{\bigc_2}} \frac{\phi}{2 \period(y)} \sum_{j,k=1}^2 \mathring{\mathfrak{a}}_{jk}^2 \frac{\partial \period(y)}{\partial y_k} \nu_j^2 p_2(y) d\sigma(y)
 \end{multline}
-Note that the bilinear form is nonsymmetric.
+Note that the bilinear form is non-symmetric.
 
 We wish to solve
 \begin{align}
@@ -233,11 +225,11 @@ L(p,\phi) &= 0, & \phi &= v - p, \forall \, v \in V.
 \end{align}
 The discrete version of \eqref{E:weak FPE} is found with the approximation
 \[
-p(z) \approx p^h(z) = \sum_{j=1}^n H_j(z) p_j
+p(y) \approx p^h(y) = \sum_{j=1}^n H_j(y) p_j
 \]
 where $H_j(x)$ denote finite-element shape functions. The discrete form of the normalization condition is
 \[
-\int_{\mathfrak I_1} p^h(z) dz + \int_{\mathfrak I_2} p^h(z) dz = 1
+\int_{\mathfrak I_1} p^h(y) dy + \int_{\mathfrak I_2} p^h(y) dy = 1
 \]
 which can be written
 \[
@@ -245,7 +237,7 @@ c^T p = 1
 \]
 where $c = (c_1, c_2, \dots, c_n)$ and
 \[
-c_i = \int_{\mathfrak I_1} H_i(z) dz + \int_{\mathfrak I_2} H_i(z) dz.
+c_i = \int_{\mathfrak I_1} H_i(y) dy + \int_{\mathfrak I_2} H_i(y) dy.
 \]
 The discrete equivalent to~\eqref{E:weak FPE 2} is
 \begin{align}
@@ -254,16 +246,16 @@ L(p^h,\phi^h) &= 0, & \phi^h &= v^h - p^h, \forall \, v^h \in V^h.
 \end{align}
 Here, $\phi \in W^h$ and
 \begin{multline*}
-V^h = \Big\{v = \sum_{j=1}^n H_j(z) v_j, v_j \in \Real, H_j \in H^1(\mathfrak I_1 \cup \mathfrak I_2), j = 1,\dots,n:\\
+V^h = \Big\{v = \sum_{j=1}^n H_j(y) v_j, v_j \in \reals, H_j \in H^1(\mathfrak I_1 \cup \mathfrak I_2), j = 1,\dots,n:\\
 \sum_{j=1}^n c_j v_j = 1\Big\}
 \end{multline*}
 \begin{multline*}
-W^h = \Big\{v = \sum_{j=1}^n H_j(z) v_j, v_j \in \Real, H_j \in H^1(\mathfrak I_1 \cup \mathfrak I_2), j = 1,\dots,n:\\
+W^h = \Big\{v = \sum_{j=1}^n H_j(y) v_j, v_j \in \reals, H_j \in H^1(\mathfrak I_1 \cup \mathfrak I_2), j = 1,\dots,n:\\
 \sum_{j=1}^n c_j v_j = 0\Big\}
 \end{multline*}
 Typical finite-element problems have weighting functions equal to shape functions, but this is not possible for the Fokker-Planck equation since $H_i \notin W^h$. Define
 \[
-U = \left\{q = (q_1,\dots,q_n)^T \in \Real^n: c^T q = 0.\right\}.
+U = \left\{q = (q_1,\dots,q_n)^T \in \reals^n: c^T q = 0.\right\}.
 \]
 Then one can construct $\phi^h \in W^h$:
 \[

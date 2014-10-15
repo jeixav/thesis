@@ -1,0 +1,41 @@
+Summarizing the results of this thesis, the theory of stochastic averaging has been applied to study the behavior of mechanical systems with bifurcations in their fast deterministic dynamics. After setting the systems near low-order resonance, the reduced space of the averaged systems was determined. Stochastic averaging theory was then applied to calculate drift and diffusion coefficients of the reduced Markov process. The steady response of the systems has been characterized by finding solutions of the Fokker--Planck equation. From a physical point of view, the solutions obtained exhibit peculiarities that are not anticipated from deterministic analysis. A comprehensive interpretation of these peculiarities remains an open area of research.
+
+In closing this thesis, possible extensions are covered.
+
+% Physical issues with wave model
+A number of things could be done to improve physical insight into the surface waves problem. Two of the easiest extensions would be to (i) carry out calculations for vertical forcing and (ii) carry out calculations for 1:2 resonance. Given that analytical formulas have been found for the autoparametric problem in 1:2 resonance, it would be interesting to see if the same could be achieved with the surface wave equations.
+
+The Miles wave model presented in Section \ref{s:governing equations} is highly idealized. To make the model more realistic, surface tension could be added. The potential energy with surface tension terms is given in~\citet{miles90:_param_forced_surfac_waves}:
+\[
+V = \rho S(-Q_n q_n) + \frac12(g + \ddot{z}) q_n q_n + \frac12 \hat{T} (\delta_{mn} k^2_n - \frac{1}{4} b_{jlmn} q_j q_l + \Order(q^3)) q_m q_n
+\]
+$\rho \hat{T}$ is the surface tension. It should be straightforward to replace Equation \eqref{e:potential energy}. Since surface tension, like gravity, acts on terms quadratic in $q$, and because the averaged drift and diffusion coefficients do not vanish, the inclusion of surface tension effects should lead to quantitative but not qualitative changes in the averaging results.
+
+In the surface wave model, linear damping has been used. It would be good if the fluid viscosity could be related to the damping coefficients. This may allow the removal of damping terms as free parameters. The work presented in \citet{vega01:_nearl_invis_farad_waves} may provide a good starting point since it uses a model similar to the Miles wave model.
+
+% Resonant wave triads & turbulence
+
+The averaging results presented in this thesis have used a Hamiltonian and an angular momentum as the slow variables. For the models analyzed, there is little doubt that these are the optimal slow variables. For other applications finding slow variables can be non-trivial. Therefore, developing automated methods to select slow variables, such as the method based on anisotropic diffusion maps \citep{singer09:_detec} seems worthwhile.
+
+With regards to applications of stochastic averaging theory, this thesis has presented steady probability densities obtained from the Fokker--Planck equation as the ultimate application. Another application frequently sought for engineering applications is the calculation of exit times from a prescribed domain. Once the averaged drift and diffusion coefficients are known, calculating exit times should not require much more work. For the problems presented here, one could calculate the exit time associated with different values of $I_\text{max}$.
+
+Steady solutions of the Fokker--Planck equation have been obtained directly. For certain applications, it may be desirable to know the transient behavior of the FPE. For example, in filtering problems one seeks to merge theoretically predicted dynamics with experimentally obtained data. This requires time-dependent solutions.
+
+Another numerical aspect that could be explored is the nature of the Fokker--Planck equation as a convection-diffusion equation. The numerical methods required to solve convection-diffusion equations can change dramatically depending on the magnitude of the convective terms relative to the diffusive terms. While the steady solutions produced seem acceptable, it may be that for time-dependent solutions a detailed understand of numerical methods for convection-diffusion PDEs will be necessary, particularly since the drift and diffusion coefficients can vary greatly near gluing vertices.
+
+The FEM used to solve the Fokker--Planck equation has not been analyzed for numerical convergence properties. It appears that this is an areas that it still open for research. \citet{kumar09:_fokker_planc} provide some results in this direction, however their work uses spectral decompositions and as such, may be difficult to apply to domains like the ones encountered in this thesis, with non-trivial shapes.
+
+In finding reduced domains, it has been observed that for both the surface waves and autoparametric oscillator models, a cusp exists at the gluing boundary that joins two fixed points. To obtain solutions, this issue has been ``swept under the rug'' by removing the portion of the domain that contains the cusp and by imposing reflective boundary conditions instead. While it has been demonstrated numerically that such an approach gives reasonable solutions, it would be good to analyze this problem analytically. For this, the first step might be to study the one-dimensional diffusion process along the gluing edge. For one dimensional diffusions one might start by calculating scale and speed measures\cite[\S 15.6]{karlin81:_secon_cours_stoch_proces}.
+
+The numerical scheme devised in the second half of Chapter \ref{c:pdf} was inspired by the heterogeneous multiscale methods\citep{e05:_analy}. To keep the analysis simple, the fastest of the three timescales in our mechanical systems was not incorporated. Developing a three timescale HMM should be possible, and this would form a more complete counterpart, and validation method, to the stochastic averaging method.
+
+% Scaling parameter \epsilon does not have a physical significance
+
+% Second-order averaging for surface waves
+
+% Explain why reflective boundary conditions are imposed
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "main"
+%%% End: 

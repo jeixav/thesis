@@ -1,0 +1,321 @@
+\section{Introduction}
+
+In this chapter, we turn our attention to producing solutions with the results of stochastic averaging theory. Specifically, stationary probability distribution functions are produced. First, the Fokker--Planck equation is derived. Then a finite element formulation of the Fokker--Planck problem is presented. Solutions for the surface gravity waves model and the autoparametric oscillator are then shown. Finally, the finite element results are validated with a sample path method.
+
+\section{Derivation of the Fokker--Planck Equation}
+
+Before starting to derive the Fokker--Planck equation, it is necessary to consider how inner products behave under changes of variables. Specifically, it is found that if the area $A(y_1)$ is bounded by the curve $E(y_1)$, functions $f$ and $g$ satisfy $f(u_1,u_2,\psi,I) = f(y_1(u_1,u_2,I),y_2(u_1,u_2,I))$ and $g(u_1,u_2,\psi,I) = g(y_1(u_1,u_2,I),y_2(u_1,u_2,I))$, then
+\begin{multline*}
+\int_{A(y_1)} f(u_1,u_2,\psi,I) g(u_1,u_2,\psi,I) du_1 du_2 d\psi dI\\
+= \int f(y_1,y_2) g(y_1, y_2) \period(y_1,y_2) dy_1 dy_2.
+\end{multline*}
+To show this, the first step is to change the variables of integration of the integral on the left hand of the equation above. This yields
+\begin{equation}
+\label{e:KLISmL}
+\int_{A(y_1)} f(u_1,u_2,\psi,I) g(u_1,u_2,\psi,I) \left\lvert\frac{\partial u_1}{\partial y_1}\right\rvert dy_1 du_2 d\psi dy_2.
+\end{equation}
+Denoting arc length along a Hamiltonian orbit $E(y_1)$ by $s$, since
+\[
+\frac{ds}{du_2} = \frac{\lVert \nabla y_1 \rVert}{\lvert dy_1/du_1\rvert}
+\]
+Equation \eqref{e:KLISmL} can be written as
+\[
+\int \oint_{E(y_1)} \frac{f(u_1,u_2,\psi,I) g(u_1,u_2,\psi,I)}{\lVert \nabla y_1 \rVert} ds dy_1 d\psi dy_2.
+\]
+After substituting the assumed functional form of $f$ and $g$, it follows that the inner product is given by
+\[
+\left\langle f(y), g(y) \right\rangle_{K,I} \equiv \int_{K=y_1} \int_{I=y_2} f(y) g(y) \period (y) dy_1 dy_2
+\]
+
+Now we derive the Fokker-Planck equation (FPE) for the density of $\{(k_t, I_t); t \ge 0\}$. We present a rigorous derivation that takes care of the killed process at $I^*$ and examine the stationary behavior of the FPE when $I^*= \infty$. We assume that there is a $p\in C^\infty((0,\infty)\times \bigcup_{i=1}^n \Gamma_i )$ and a $p_{i}^\BDY\in C^\infty((0,\infty))$ such that for any $f\in \mathscr{D}_\Graph^\dag$
+% FIXME Summation $i=1,2$ is specific to autoparametric problem, need to generalize.
+\begin{equation}
+\label{E:expectation}
+\begin{aligned}
+\Expectation^\epsilon_x \left[f(k_t, I_t) \right] &= \sum_{i=1}^n (\pm) \int_{\Gamma_i} f_i(y) p_i(t,y) \period_i(y) dk\,dI\\
+&\quad + \sum_{i=1}^n (\pm) \int_0^{k_i^c(I^*)} f_i(k,I^*) \period_{i}(k,I^*) p_{i}^\BDY(k,t) dk
+\end{aligned}
+\end{equation}
+where the `$+$' sign is taken on the leaves where the coordinate $k$ is greater than $K({\Order})$ and the `$-$' sign is taken on the leaves where the coordinate $k$ is less than $K({\Order})$.) $p_i(t,\cdot)$ and $p_{i}^\BDY(t)$ are the density of the law of $(k_t, I_t)$ relative to Lebesgue measure on $\bigcup_{i=1}^n \Gamma_i$ and a Dirac mass at $I^*$. Since we kill $(k_t, I_t)$ at $I^*$, mass may accumulate there, necessitating a Dirac measure at $I^*$.
+Differentiating~\eqref{E:expectation} with respect to time yields
+\begin{equation}
+\begin{aligned}
+\frac{\partial}{\partial t} \Expectation^\epsilon_x\left[ f(k_t, I_t) \right] &= \sum_{i=1}^n (\pm) \int_{\Gamma_i} f_{i}(y) \frac{\partial p_{i}}{\partial t}(t,y) \period_{i}(y) dk dI\\
+&\quad+\sum_{i=1}^n (\pm) \int_0^{k_i^c(I^*)}\!\! f_{i}(k,\,I^*) \, \period_{i}(k,\,I^*) \, \frac{\partial p_{i}^\BDY}{\partial t}(k,\,t) \, dk
+\end{aligned}
+\label{E:exp-prime}
+\end{equation}
+On the other hand
+\begin{equation}
+\begin{aligned}
+\frac{\partial}{\partial t} \Expectation^\epsilon_x\left[f(k_t ,I_t) \right] &= \Expectation^\epsilon_x\left[(\gen^\dagger_i f)(k_t, I_t) \right]\\
+&= \sum_{i=1}^n (\pm) \int_{\Gamma_i} (\gen^\dagger_i f_{i})(y) p_{i}(t,y) \period_{i}(y) dk dI\\
+&\quad + \sum_{i=1}^n (\pm) \int_{0}^{k_{i}^{c}(I^*)}\!\! (\gen^\dagger_i f_i)(k,I^*) \period_i(k,I^*) p_{i}^\BDY(k,t) dk
+\end{aligned}
+\label{E:exp-ito}
+\end{equation}
+Combining Equations \eqref{E:exp-prime} and \eqref{E:exp-ito} gives
+\begin{multline}
+\sum_{i=1}^n (\pm) \int_{0}^{k_{i}^{c}(I^*)} \left\{f_i(k,I^*) \frac{\partial p_i^\BDY}{\partial t}(t,k) - (\gen^\dagger_i f_i)(k,I^*) p_i^\BDY(t,k) \right\} \period_{i}(k,I^*) dk\\
++ \sum_{i=1}^n (\pm) \int_{\Gamma_i} \left\{f_i(y) \frac{\partial p_i}{\partial t}(t,y) - (\gen^\dagger_i f_i)(y) p_{i}(t,y) \right\} \period_i(y) dk dI = 0
+\label{E:step0}
+\end{multline}
+
+\begin{remark}
+\emph{Relation between the gluing condition and the probability flux condition.}
+The gluing condition and the probability flux condition are related. This is seen by starting with the generic ``adjoint'' formula for a linear second order operator $\gen$ and its adjoint $\gen^\text{adj}$. Referring to, for example \citet[\S3.6]{zauderer98:_partial_differ_equat_of_applied_mathem}, on adjoint differential operators, the divergence theorem gives
+\[
+\int_G \{p \gen f - f \gen^{\text{adj}} p \}dv = \int_{\partial G} \boldsymbol{P}\cdot\boldsymbol{n} ds.
+\]
+When the generator has the form given in Definition \ref{d:reduced generator},
+\[
+P_j^i = \frac12 \sum_{k=1}^2 \mathring{\Aa}^i_{jk} \frac{\partial f_{i}(y)}{\partial y_k} p_i(t,y) + f_i J_j^i
+\]
+Referring to~\eqref{E:dom-graph}, the first term in the sum is
+recognized as being associated with the gluing condition while the
+second is associated with the probability flux condition. The probability flux on leaf $i$ in the direction $y_j$ is:
+\begin{equation}
+\label{E:prob flux}
+J_j^i(t,y) \equiv \mathring{\mathfrak{b}}_{j}^{i}(y) p_{i}(t,y) - \frac12 \sum_{k=1}^2 \frac{\partial}{\partial y_k} \left(
+\mathring{\Aa}_{jk}^i(y) p_i(t,y)\right)
+\end{equation}
+\end{remark}
+
+Applying the divergence theorem to the last term on the left side of~\eqref{E:step0} and making use of the properties of $\mathscr{D}_\Graph^\dag$ yields
+\begin{multline}
+\sum_{i=1}^n (\pm) \int_{\Gamma_i} \left\{ \frac{\partial p_{i}}{\partial t}(t,y) - \gen^{\dagger,\text{adj}}_{i} p_{i} (t,y) \right\} f_{i}(y) \period_{i}(y) dk dI\\
++ \sum_{i=1}^n (\pm) \int_{0}^{k_{i}^{c}(I^*)} f_{i}(k,\,I^*) \frac{\partial p_i^\BDY}{\partial t}(t,k) dk\\
+= \sum_{i=1}^n(\pm) \int_{\partial\Gamma_i} \sum_{j=1}^2 J_j^i(t,y) f_i(y) \cdot \nu_j ds\\
++ \sum_{i=1}^n (\pm) \int_{\partial\Gamma_i} \frac12 \sum_{j=1}^2 \left\{\sum_{k=1}^2 \mathring{\Aa}_{jk}^i(y) \frac{\partial f_{i}}{\partial y_k}(y)\right\} p_{i}(t,y) \cdot \nu_j ds
+\label{E:step6}
+\end{multline}
+where
+\[
+\gen^{\dagger,\text{adj}}_i = \frac{1}{\period_i(y)} \sum_{j=1}^2 \frac{\partial}{\partial y_j}(\mathring{\mathfrak b}_j(y) p(y)) - \frac{1}{2 \period_i(y)} \sum_{j,k=1}^2 \frac{\partial^2}{\partial y_j \partial y_k} (\mathring{\mathfrak a}_{jk}(y) p(y))
+\]
+and
+
+For the autoparametric problem, each $\partial\Gamma_i$ consistes of a vertical line ($\nu_2=0$) representing the vertex ${\Order}\equiv[0,I^*]$, a horizontal ($\nu_1=0$) line ${\bigb}\equiv[0,{k_i^c(I^*)}]$, at which the process is killed ($I=I^*$), and a curved line ${\bigc_i}\equiv \{(k,I)\in \Real^2: k= (-1)^iI\sqrt{3I}/9\}$, for $i=1,2$ representing the fixed points. Hence, by explicitly expressing the boundary $\partial\Gamma_i$, equation~\eqref{E:step6} can be rewritten as
+\begin{multline}
+\sum_{i=1}^n (\pm) \int_{\Gamma_i} \left\{\frac{\partial p_i}{\partial t}(t,y) - \mathring \gen^{\dagger,\text{adj}}_{i} p_{i} (t,y) \right\} f_i(y) \period_{i}(y) dk dI\\
++ \sum_{i=1}^n (\pm) \int_{\bigb} \left[\frac{\partial p_i^\BDY}{\partial t}(t,\,k) - J_2^{i}(t,k,I^*) \right] f_i(k,I^*) dk\\
+= \sum_{i=1}^n \int_{\bigc_i} \sum_{j=1}^2 J_j^i(t,y) f_i(y) \cdot \nu_j ds + \sum_{i=1}^n (\pm) \int_{\Order} J_1^i(t,\Order,I) f_i(\Order,I) dI\\
++ \frac12 \sum_{i=1}^n (\pm) \int_{\bigb} \left\{\sum_{k=1}^2 \mathring{\Aa}_{2k}^i(k,I^*) \frac{\partial f_i}{\partial y_k}(k,I^*)\right\}\, p_i(t, k, I^*) dk\\
++ \frac12 \int_{\bigc} \sum_{j=1}^2 \left\{\sum_{k=1}^n \mathring{\Aa}_{jk}^i(y) \frac{\partial f_i}{\partial y_k}(y)\right\} p_{i}(t,y) \cdot \nu_j ds\\
++ \frac12 \sum_{i=1}^n (\pm) \int_{\Order} \left\{ \sum_{k=1}^2 \mathring{\Aa}_{1k}^i(\Order,I)
+\frac{\partial f_i}{\partial y_k}(\Order,I)\right\} p_i(t,\Order,I) dI
+\label{E:step7}
+\end{multline}
+The properties of $f_i$ defined for the limiting domain $\mathscr{D}_\Graph^\dag$ (i.e. equation~\eqref{E:dom-graph-simplified}) will not eliminate any other terms in~\eqref{E:step7}. Boundary conditions for $p_i$ are derived from the right hand side of~\eqref{E:step7}. Along $\bigc_i$, which represent regular elliptic fixed points~(non-degenerate), we impose the zero probability flux boundary condition. Hence the first term in the right hand side of~\eqref{E:step7} becomes identically zero. Once again for $f_i \in \mathscr{D}_\Graph^\dag$, the second and the last term vanish by imposing zero net flux and continuity of probability density at the vertex ${\Order}$, respectively.
+% Since $h_i^c, i=1,2$ are the energy associated with regular elliptic fixed points~(non-degenerate)
+% FIXME Reference given here Lemma~\ref{L:fsmoothness} in \cite{namachchivaya01:_non_duffin_pol}
+% \[
+% \lim_{z \searrow h_{i}^{c}} \mathring\Aa_{jk}^{i}(z)=0, \quad \lim_{z \searrow h_{i}^{c}} \frac{\partial f_{i}}{\partial z_k}(z) \;\; \text{are finite}, \quad \lim_{z \searrow h_{i}^{c}} p_{i} (t,z) \;\; \text{are normalizable}
+% \]
+% Hence, the fourth term on the right hand side of~\eqref{E:step7} and the third term on the right hand side vanishes in the above expression due to the fact the process is killed when the energy reaches $I^*$.
+
+Hence $p_i$ satisfies
+\begin{enumerate}
+\item the FPE,
+\begin{equation}
+\frac{\partial p_i}{\partial t}(t,y) = \gen^{\dagger,\text{adj}}_{i} p_{i} (t,y) \; \text{ for } t > 0 \text{ and } z \in \Gamma_i
+\label{E: FPE time-dependent}
+\end{equation}
+
+\item conservation of probability flux at the vertex $\mathcal{O}$
+\begin{equation}
+\lim_{y \to \mathcal O} \sum_{i = 1}^N J^i(t,y) \cdot \nu^i = 0
+\label{E:cpfc}
+\end{equation}
+
+\item the zero probability flux condition along the edges identified with elliptic fixed points,
+\begin{equation}
+\eval{\sum_{j=1}^2 \left(\mathfrak b_j^i(y) p_i(t,y) - \frac12 \sum_{k=1}^2 \frac{\partial}{\partial y_k} \left(\Aa_{jk}^i(y)\,p_{i}(t,y)\right)\right) \cdot \nu_j}_{y = \bigc_i} = 0
+\label{E:BC elliptic}
+\end{equation}
+
+\item killing of the process when the energy reaches $I^*$, i.e.,
+\begin{equation}
+\lim_{y_2 \to I^*} p_i(t,y) = 0, \quad \text{for} \quad
+i=1,2
+\label{E:BC upper}
+\end{equation}
+\end{enumerate}
+The dynamics of $p_i^\BDY$ are defined by
+\[
+\frac{\partial p_{i}^\BDY}{\partial t}(t,k) = \mathring{\mathfrak{b}}_2^{i}(y)\,p_i(t,k,I^*) - \frac12 \sum_{k=1}^2
+\frac{\partial}{\partial y_k} \left(\mathring\Aa_{2k}^i(z) p_i(t,k,I^*)\right)
+\]
+i.e., the rate of change of probability in the cemetery state $I^*$, on each leg of the graph, is equal to the flux entering $I^*$ from the interior.
+
+\section{Finite Element Solution to the Fokker-Planck Equation}
+
+We solve the FPE at steady-state. Based on equation~\eqref{E: FPE time-dependent}, within leaves where the FPE is specified we have:
+\begin{equation}
+\label{E:FPE}
+\sum_{j=1}^2 \frac{\partial}{\partial y_j}(\mathring{\mathfrak b}_j(y) p(y)) - \frac12 \sum_{j,k=1}^2 \frac{\partial^2}{\partial y_j \partial y_k} (\mathring{\mathfrak a}_{jk}(y) p(y)) = 0
+\end{equation}
+
+The boundary condition given in equation~\eqref{E:BC elliptic} cannot be imposed directly because it uses coefficients divided by the period, whereas the FPE contains ``ringed'' (i.e. not divided by the period) coefficients. Applying the chain and the product rule for differentiation, equation \eqref{E:BC elliptic} on either leaf becomes
+\begin{multline}
+\frac{1}{\period(y)} \sum_{j=1}^2 \Bigg(\mathring{\mathfrak{b}}_j(y) p(y) - \frac12 \sum_{k=1}^2 \Big[\frac{\partial}{\partial y_k} (\mathring{\mathfrak{a}}_{jk}(y) p(y)) - \frac{\mathring{\mathfrak{a}}_{jk} p(y)}{\period(y)} \frac{\partial \period(y)}{\partial y_k}\Big]\Bigg) \nu_j \Bigg\rvert_{y = \bigc} = 0\\
+\frac{1}{\period(y)} \sum_{j=1}^2 \Bigg(J_j(y) + \frac12 \sum_{k=1}^2 \frac{\mathring{\mathfrak{a}}_{jk} p(y)}{\period(y)} \frac{\partial \period(y)}{\partial y_k}\Bigg) \nu_j \Bigg\rvert_{z = \bigc} = 0
+\label{E:BC elliptic 2}
+\end{multline}
+
+At the ``upper'' boundary, $I = I^*$, the boundary condition given in equation~\eqref{E:BC upper} should be imposed. This introduces a difficulty however since equation~\eqref{E:BC upper} is formally derived in the limit $I^* \to \infty$. Since representing this limit in numerical calculations may not be straightforward, we choose to simplify the situation by imposing a condition like the zero probability flux in equation~\eqref{E:BC elliptic} instead. In our results, we will need to ensure that the finite value selected for $I^*$ is sufficiently large.
+
+As can be seen in Figure~\ref{F:domain}, the domain used with the finite-element approach does not start at $I=0$, this is to avoid the cusp at the origin. As a result, a boundary condition must be imposed on that boundary. As with the boundary at $I^*$, the zero-flux boundary condition will be imposed.
+
+Finally the conservation of probability flux condition, in equation~\eqref{E:cpfc}, needs to be considered. As shown in Appendix~\ref{A:gluing BC simplification}, it can be demonstrated numerically that this condition simplifies to:
+\begin{equation}
+\eval{\frac{\partial p_1}{\partial k}}_{z = \mathcal{O}} = \eval{\frac{\partial p_2}{\partial k}}_{z = \mathcal{O}}
+\label{E:cpfc simplified}
+\end{equation}
+
+\subsection{Weak Formulation of the Fokker-Planck Problem}
+
+Use of the finite element method entails specifying a weak form of the Fokker-Planck problem. The weak formulation of the FPE given here is adapted from \citet{langtangen91:_fokker_planck}, where a method to obtain steady-state solutions using a finite-element approach is presented. The use of Langtangen's method is necessary because the steady-state FPE is satisfied by the trivial solution, $p=0$. Langtangen's method enforce the normalization condition and thus provides a nontrivial solution.
+% Give alternatives to Langtangen's method: (i) fix PDF at some point in the domain, (ii) time-dependent FPE solution.
+Essentially, our task consists of extending Langtangen's method to multi-leaf domains (i.e. with a conservation of probability flux condition.)
+
+To begin, we introduce a Hilbert space, $H^1$, that we will use to specify weak solutions. Let
+\begin{align}
+V &= \left\{v \in H^1(\mathfrak I): \int_\mathfrak I v dz = 1\right\} &\text{and}&& W &= \left\{v \in H^1(\mathfrak I): \int_\mathfrak I v dz = 0\right\}
+\label{E:weak spaces}
+\end{align}
+% FIXME Change notation: \mathfrak{I} -> \Gamma
+Note that the definitions above do not reflect that we have two leaves, $\mathfrak{I}_{1,2}$ -- we start our presentation by considering the simpler case where the domain of the FPE is a single leaf. The next step is to derive a bilinear form corresponding to the FPE. The weak form of the steady-state FPE, equation~\eqref{E:FPE}, is
+\[
+\int_\mathfrak I \phi (\nabla \cdot J) dz = 0
+\]
+where $\phi \in W$ and the $p \in V$ (recall from equation~\eqref{E:prob flux} that $p$ is contained within $J$.) Integration by parts gives
+\[
+-\int_\mathfrak I \nabla \phi \cdot J dz + \int_{\partial \mathfrak I} \phi J \cdot \nu d\sigma(z) = 0
+\]
+Separating $\partial \mathfrak I$ into an exterior boundary and an interior boundary (i.e. the gluing edge),
+\begin{equation}
+-\int_\mathfrak I \nabla \phi \cdot J dz + \int_{\partial \mathfrak I_\bigc} \phi J \cdot \nu d\sigma(z) + \int_{\partial \mathfrak I_\mathcal{O}} \phi J \cdot \nu d\sigma(z) = 0
+\label{E:FPE weak}
+\end{equation}
+On $\partial \mathfrak I_\bigc$, using equation~\eqref{E:BC elliptic 2} gives
+\[
+J \cdot \nu = -\frac{1}{2 \period(z)} \sum_{j,k=1}^2 \mathring{\mathfrak{a}}_{jk} \frac{\partial \period(z)}{\partial z_k} \nu_j p(z)
+\]
+Thus equation~\eqref{E:FPE weak} becomes
+\begin{equation}
+\int_\mathfrak I \nabla \phi \cdot J dz + \int_{\partial \mathfrak I_\bigc} \frac{\phi}{2 \period(z)} \sum_{j,k=1}^2 \mathring{\mathfrak{a}}_{jk} \frac{\partial \period(z)}{\partial z_k} \nu_j p(z) d\sigma(z) + \int_{\partial \mathfrak I_\mathcal{O}} \phi J \cdot \nu d\sigma(z) = 0
+\label{E:FPE weak 2}
+\end{equation}
+Now the finite-element problem is formulated so as to treat both leaves together. In so doing, we must redefine the quantities given in~\eqref{E:weak spaces}, we have
+\begin{align*}
+V &= \left\{v \in H^1(\mathfrak I_1 \cup \mathfrak I_2): \int_\mathfrak{I_1} v dz + \int_\mathfrak{I_2} v dz = 1\right\}\\
+W &= \left\{v \in H^1(\mathfrak I_1 \cup \mathfrak I_2): \int_\mathfrak{I_1} v dz + \int_\mathfrak{I_2} v dz = 0\right\}
+\end{align*}
+and~\eqref{E:FPE weak 2} and the results of Appendix~\ref{A:gluing BC simplification} on simplifications of the conservation of probability flux condition give
+\begin{multline*}
+\int_{\mathfrak I_1} \nabla \phi \cdot J^1 dz + \int_{\partial \mathfrak I_{\bigc_1}} \frac{\phi}{2 \period(z)} \sum_{j,k=1}^2 \mathring{\mathfrak{a}}_{jk}^1 \frac{\partial \period(z)}{\partial z_k} \nu_j^1 p_1(z) d\sigma(z)\\
++ \int_{\mathfrak I_2} \nabla \phi \cdot J^2 dz + \int_{\partial \mathfrak I_{\bigc_2}} \frac{\phi}{2 \period(z)} \sum_{j,k=1}^2 \mathring{\mathfrak{a}}_{jk}^2 \frac{\partial \period(z)}{\partial z_k} \nu_j^2 p_2(z) d\sigma(z) = 0
+\end{multline*}
+% FIXME Explain that can essentially ignore gluing BC, but in evaluating coefficients, need to place quadrature points away from gluing edge since certain coefficients are infinite there.
+Since on the edge $\partial \mathfrak I_\mathcal{O}$ equation~\eqref{E:cpfc simplified} holds and $\mathring{\mathfrak{a}}_{11}^1 = \mathring{\mathfrak{a}}_{11}^2$, the equation above gives the bilinear form we sought:
+\begin{multline}
+\label{E:weak FPE}
+L(p,\phi) = \int_{\mathfrak I_1} \nabla \phi \cdot J^1 dz + \int_{\partial \mathfrak I_{\bigc_1}} \frac{\phi}{2 \period(z)} \sum_{j,k=1}^2 \mathring{\mathfrak{a}}_{jk}^1 \frac{\partial \period(z)}{\partial z_k} \nu_j^1 p_1(z) d\sigma(z)\\
++ \int_{\mathfrak I_2} \nabla \phi \cdot J^2 dz + \int_{\partial \mathfrak I_{\bigc_2}} \frac{\phi}{2 \period(z)} \sum_{j,k=1}^2 \mathring{\mathfrak{a}}_{jk}^2 \frac{\partial \period(z)}{\partial z_k} \nu_j^2 p_2(z) d\sigma(z)
+\end{multline}
+Note that the bilinear form is nonsymmetric.
+
+We wish to solve
+\begin{align}
+\label{E:weak FPE 2}
+L(p,\phi) &= 0, & \phi &= v - p, \forall \, v \in V.
+\end{align}
+The discrete version of \eqref{E:weak FPE} is found with the approximation
+\[
+p(z) \approx p^h(z) = \sum_{j=1}^n H_j(z) p_j
+\]
+where $H_j(x)$ denote finite-element shape functions. The discrete form of the normalization condition is
+\[
+\int_{\mathfrak I_1} p^h(z) dz + \int_{\mathfrak I_2} p^h(z) dz = 1
+\]
+which can be written
+\[
+c^T p = 1
+\]
+where $c = (c_1, c_2, \dots, c_n)$ and
+\[
+c_i = \int_{\mathfrak I_1} H_i(z) dz + \int_{\mathfrak I_2} H_i(z) dz.
+\]
+The discrete equivalent to~\eqref{E:weak FPE 2} is
+\begin{align}
+L(p^h,\phi^h) &= 0, & \phi^h &= v^h - p^h, \forall \, v^h \in V^h.
+\label{E:FPE FEM}
+\end{align}
+Here, $\phi \in W^h$ and
+\begin{multline*}
+V^h = \Big\{v = \sum_{j=1}^n H_j(z) v_j, v_j \in \Real, H_j \in H^1(\mathfrak I_1 \cup \mathfrak I_2), j = 1,\dots,n:\\
+\sum_{j=1}^n c_j v_j = 1\Big\}
+\end{multline*}
+\begin{multline*}
+W^h = \Big\{v = \sum_{j=1}^n H_j(z) v_j, v_j \in \Real, H_j \in H^1(\mathfrak I_1 \cup \mathfrak I_2), j = 1,\dots,n:\\
+\sum_{j=1}^n c_j v_j = 0\Big\}
+\end{multline*}
+Typical finite-element problems have weighting functions equal to shape functions, but this is not possible for the Fokker-Planck equation since $H_i \notin W^h$. Define
+\[
+U = \left\{q = (q_1,\dots,q_n)^T \in \Real^n: c^T q = 0.\right\}.
+\]
+Then one can construct $\phi^h \in W^h$:
+\[
+\phi^h = \sum_{i=1}^n q_i H_x(x), \quad q \in U.
+\]
+Equation~\eqref{E:FPE FEM} then results in the following system of algebraic equations for $p$:
+\begin{align*}
+q^T K p &= 0, & \forall& q \in U\\
+c^T p &= 1
+\end{align*}
+The specific form of $K$ is:
+\begin{align*}
+K_{ij} &= \int_\Omega \frac{\partial \phi_i}{\partial y_1} \Big[\Big\{-\mathring{\mathfrak b}_1 + \frac12 \Big(\frac{\partial \mathring{\mathfrak a}_{11}}{\partial y_1} + \frac{\partial \mathring{\mathfrak a}_{12}}{\partial y_2}\Big)\Big\}\phi_j\\
+&\quad + \frac12 \Big(\mathring{\mathfrak a}_{11}\frac{\partial \phi_j}{\partial y_1} +
+\mathring{\mathfrak a}_{12} \frac{\partial \phi_j}{\partial y_2} \Big) \Big] \\
+&\quad + \frac{\partial \phi_i}{\partial y_2} \Big[\Big\{-\mathring{\mathfrak b}_2 + \frac12 \Big(\frac{\partial \mathring{\mathfrak a}_{21}}{\partial y_1} + \frac{\partial
+\mathring{\mathfrak a}_{22}}{\partial y_2}\Big)\Big\}\phi_j\\
+&\quad + \frac12 \Big(\mathring{\mathfrak a}_{21} \frac{\partial \phi_j}{\partial y_1} +
+\mathring{\mathfrak a}_{22} \frac{\partial \phi_j}{\partial y_2} \Big) \Big] dy
+\end{align*}
+
+\subsection{Langtangen's Method}
+
+A method that can be used to solve the FPE by the finite-element method (FEM) is given in \citet{langtangen91:_fokker_planck}. Starting from Equations (27) \& (28) in that publication, namely:
+\begin{align}
+K p &= \lambda c\\
+c^T p &= 1
+\end{align}
+Langtangen's method consists of solving for a rescaled probability density first, $\hat{p}$
+\[
+\hat{p} = K^{-1} c
+\]
+The vector $c$ is known and is given by $c_i = \int_{\mathfrak I} H_i(x) dx_1 dx_2$ with $H_i$'s being the shape functions of the FEM. $\lambda$ is found by solving the equation
+\[
+c^T \hat{p} = 1/\lambda
+\]
+and finally
+\[
+p = \lambda \hat{p}
+\]
+
+The FEM solver is programmed with Octave \citep{eaton02:_gnu_octav_manual}.
+
+\subsection{Domain Triangulation}
+
+Finite-element triangulations of the $K-I$ domains are produced using Triangle~\citep{shewchuk96:_trian}. The domains of the Fokker-Planck equation have boundaries defined by polynomial functions. Triangle does not allow specifying such boundaries directly, rather a certain number of points on the boundary must be given. In order to create elements of a specified area, Triangle may place additional nodes between points given to it as input. These additional points can be problematic because they are positioned using linear interpolation between the input points (these extra nodes are called Steiner points) and this can lead to nodes being placed outside the analytically defined domain of the Fokker--Planck equation.
+
+Experience with Triangle shows that these problems can be avoided by specifying the number of input points in (inverse) proportion to the requested element area. Specifically, input points are placed by calculating the arc length along the boundary and the spacing between the points is made equal to the length of the side of an equilateral triangle with an area equal to the requested element area. As long as the domain triangulated does not include cusps, this procedure seems to produce triangulation that have none, or few, Steiner points.
+
+DistMesh \citep{persson04:_simpl_mesh_gener_in_matlab} is another mesh generator. It allows specifying boundaries in terms of functions. Its use for the problems treated in this thesis has not been explored.
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "main"
+%%% End: 

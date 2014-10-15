@@ -1,0 +1,151 @@
+\documentclass[letterpaper,tocnosub,noragright,centerchapter,12pt,edeposit]{uiucecethesis09}
+
+\makeatletter
+
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{bbm}
+\usepackage{bm}
+\usepackage{calc}
+\usepackage[justification=raggedright]{caption}
+\usepackage{graphicx}
+\usepackage{mathrsfs}
+\usepackage{natbib}
+\usepackage{psfrag}
+\usepackage[overload]{textcase}
+%% hyperref manual advises loading this package last
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,breaklinks=true}
+
+\phdthesis
+
+\title{Stochastic Averaging for Mechanical Systems}
+\author{Kristjan Onu}
+\department{Mechanical Science \& Engineering}
+\degreeyear{2010}
+
+\advisor{Professor N. Sri Namachchivaya}
+
+\committee{Professor N. Sri Namachchivaya, Director of Dissertation Research\\
+Professor Matthew West, Chair\\
+Professor R. Lee DeVille\\
+Professor Martin Ostoja-Starzewski}
+
+\newcommand{\Aave}{\operatorname{\mathbf A}}
+\newcommand{\Aa}{\mathfrak a}
+\newcommand{\prob}{\mathbf P}
+\newcommand{\Expectation}{\operatorname{\mathbf E}}
+\newcommand{\Graph}{\mathfrak G}
+\newcommand{\Haus}{\mathscr H}
+\newcommand{\Hup}{H^*}
+\newcommand{\Int}{\mathcal I}
+\newcommand{\Real}{\mathbf R}
+\newcommand{\Ss}{\mathbf S}
+\newcommand{\Strat}{\mathfrak M}
+\newcommand{\period}{T}
+\newcommand{\Tave}{\operatorname{\mathbf M}}
+\newcommand{\Zz}{\mathbf Z}
+\newcommand{\Order}{\mathcal{O}}
+\newcommand{\crit}{\mathfrak c}
+\newcommand{\dom}{\mathscr D}
+\newcommand{\eval}[2][\right]{\relax\ifx#1\right\relax \left.\fi#2#1\rvert}
+\newcommand{\exit}{\mathfrak e}
+\newcommand{\filt}{\mathscr F}
+\newcommand{\gen}{\mathscr L}
+\newcommand{\sech}{\operatorname{sech}}
+\newcommand{\s}{S}
+\newcommand{\BDY}{\circledast}
+\newcommand{\INT}{\mathscr I}
+\newcommand{\bigc}{\mathcal C}
+\newcommand{\bb}{\mathbf b}
+\newcommand{\bigb}{\mathcal B}
+\newcommand{\xv}{\boldsymbol x}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{assumption}[theorem]{Assumption}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+
+\hyphenation{time-scale time-scales}
+\hyphenation{sto-chas-tic}
+\hyphenation{pa-ra-me-tri-zed}
+\hyphenation{nu-me-ri-cal}
+\hyphenation{data-set}
+
+\begin{document}
+
+\maketitle
+
+\frontmatter
+
+\begin{abstract}
+\input{abstract}
+\end{abstract}
+
+\begin{dedication}
+To Maris V. Neimanis.
+\end{dedication}
+
+\begin{acknowledgments}
+\input{acknowledgments}
+\end{acknowledgments}
+
+\tableofcontents
+%\listoffigures
+
+\mainmatter
+
+\chapter{Introduction}
+\input{introduction}
+
+\chapter{Resonant Dynamics of a Periodically Driven Noisy Oscillator}
+\label{c:oscillator}
+\input{oscillator}
+
+\chapter{Surface Gravity Waves}
+\label{c:sgwaves}
+\input{sgwaves_stochastic_analysis}
+
+\chapter{Autoparametric Oscillator}
+\label{c:autoparametric}
+\input{autoparam_stochastic_analysis}
+
+\chapter{Probability Density Solutions}
+\label{c:pdf}
+\input{pdf_solutions}
+\input{sgwaves_stationary_pdf}
+\input{autoparam_stationary_pdf}
+\input{numerical_validation}
+
+% The Fokker--Planck equation
+% Finite Element Formulation
+% Solutions for the Surface Gravity Waves Problem
+% Solutions for the Autoparametric Oscillator
+% Validation With a Sample Path Method
+
+\chapter{Conclusions}
+\label{c:conclusions}
+\input{conclusions}
+
+\appendix
+\chapter{Surface Gravity Waves}
+\input{app_sgwaves_nl_hamiltonian}
+\input{app_sgwaves_drift_diffusion_integrands}
+
+\chapter{Autoparametric System}
+\input{app_autoparam_nonlinear_vector_fields}
+\input{app_autoparam_path_integrals}
+\input{app_autoparam_gluing_bc_simplification}
+
+\backmatter
+
+\bibliographystyle{abbrvnat}
+\bibliography{main}
+
+\aubio
+\input{biography}
+
+\end{document}

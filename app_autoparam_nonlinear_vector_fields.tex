@@ -1,0 +1,85 @@
+\section{Nonlinear vector fields}
+\label{A:autoparam nonlin vec fields}
+
+In this appendix, we derive exact formulae for $b^1$ and $b^2$ in~\eqref{E:standard1}. Although quadratic nonlinearities in coupled oscillators affect the normal froms or the averaged equations at higher order, the presence of $1:2$ resonance make their contribution at ${\Order}(\epsilon)$ paramount. For the problem under consideration, we have:
+\begin{align*}
+b^1_1(x,t) &= \frac{1}{4} (x_2^2 - x_4^2) [\sin(2q + 1)t + \sin(2q - 1)t]\\
+&\quad - \frac12 x_2 x_4 [\cos(2q + 1)t + \cos(2q - 1)t]\\
+% b^1_2(x,t) &= \frac12 \left(x_1x_4 - x_2x_3\right)\cos(2q - 1)t + \frac12 \left(x_1x_2 - x_4x_3\right) \sin(2q + 1)t\\
+% &\quad - \frac12 \left(x_1x_2 + x_3x_4\right) \sin(2q - 1)t - \frac12 \left(x_1x_4 + x_2x_3\right) \cos(2q + 1)t\\
+b^1_2(x,t) &= \frac12 (x_1 x_2 - x_3 x_4) [\sin(2q + 1)t - \sin(2q - 1)t]\\
+&\quad + \frac12 x_1 x_4 [\cos (2q - 1)t - \cos(2q + 1)t]\\
+&\quad - \frac12 x_2 x_3 [\cos(2q - 1)t + \cos(2q + 1)t]\\
+b^1_3(x,t) &= \frac14 (x_2^2 - x_4^2) [\cos(2q - 1)t - \cos(2q + 1)t]\\
+&\quad - \frac12 x_2 x_4 [\sin(2q + 1)t - \sin(2q - 1)t]\\
+% b^1_4(x, t) &=\frac12 \left(x_1 x_2 + x_3 x_4\right) \cos(2q - 1) t - \frac12 \left(x_1 x_4 + x_2 x_3\right) \sin(2q + 1)\\
+% &\quad + \frac12 \left(x_1 x_4 - x_2 x_3\right) \sin(2q - 1) t + \frac12 \left(x_4 x_3 - x_2 x_1\right) \cos(2q + 1) t
+b^1_4(x,t) &= \frac12 x_1 x_2 [\cos(2q - 1)t - \cos(2q + 1)t]\\
+&\quad - \frac12 x_1 x_4 [\sin(2q + 1)t - \sin(2q - 1)t]\\
+&\quad - \frac12 x_2 x_3 [\sin(2q - 1)t + \sin(2q + 1)t]\\
+&\quad + \frac12 x_3 x_4 [\cos(2q - 1)t + \cos(2q + 1)t]
+\end{align*}
+In these expressions, those terms that contain $\cos(2q - 1)t$ will remain constant while averaging with the condition of resonance, i.e., $q=1/2$.
+
+At $\Order(\epsilon^2)$, we consider the cubic nonlinearities of the original equations of motion, the dissipative effects and the effect of detuning. It is worth pointing out that, while averaging there will be higher order terms from the quadratic nonlinearities,and they have to be considered at ${\Order}(\epsilon^2)$ to be consistent.
+\begin{align*}
+b^2_1(x,t) &= -\zeta_o x_1 + \frac{1}{4q} x_3 \left({x_2}^2+{x_4}^2\right) + \frac{1}{4q} {x_3 \left({x_2}^2+{x_4}^2\right)\cos(2t)}\\
+&\quad + \frac{1}{8q} {\left(2\,x_2x_4x_1+{x_2}^2 x_3-{x_4}^2 x_3\right) \cos(1 + q)2\,t}\\
+&\quad - \frac{1}{8q}\,{ \left(-{x_2}^2 x_3 + {x_4}^2 x_3 + 2\,x_2 x_4 x_1\right) \cos(q-1)2\,t}\\
+&\quad + \frac{1}{4q}{x_3 \left(x_2 - x_4\right) \left(x_2 + x_4 \right) \cos(2\,qt)}\\
+&\quad - \frac{1}{8q}\,{\left(-{x_4}^2x_1+{x_2}^2x_1 - 2\,x_2 x_4 x_3\right) \sin(1+q)2\,t}\\
+&\quad + \frac{1}{8q}\, {\left({x_2}^2 x_1 + 2\, x_2 x_4 x_3 - {x_4}^2x_1\right)\sin(q-1)2\,t}\\
+&\quad - \frac{1}{4q} {x_1\left({x_2}^2+{x_4}^2\right)\sin(2\,t)} + \frac{1}{2q} {x_2x_4x_3\sin(2\,qt)}\\
+&\quad + \zeta_o x_1\cos(2t) + \zeta_ox_3 \sin(2\,t)
+\end{align*}
+\begin{align*} 
+b^2_2(x,t) &= -\frac{1}{2q} \left({2 \zeta_p q x_2 - \mu x_4}\right)\\
+&\quad+\frac{1}{16{Rq}}\,{x_4\left(4\,R \,({x_1}^2 + {x_3}^2) + (4\,Rq - q)({x_2}^2
++ {x_4}^2) \right)}\\
+&\quad-\frac{1}{4q}{x_4\left(x_1-x_3\right)\left(x_1 + x_3\right)\cos(2t)}\\
+&\quad+\frac{1}{8q}\,{\left(2\,x_2x_1 x_3+x_4{x_1}^2-x_4{x_3}^2\right)\cos(1+q)2t}\\
+&\quad+\frac{1}{8q}\,{\left(-x_4{x_3}^2+x_4{x_1}^2 - 2\,x_2x_1x_3\right)\cos(q-1)2\,t}\\
+&\quad-\frac{1}{12Rq}\,{ x_4 \left(3\,R{x_3}^2+3\,R{x_1}^2-q{x_4}^2\right)\cos(2\,qt)}\\
+&\quad+\frac{1}{48{R}}\,{x_4\left(-{x_4}^2+3\,{x_2}^2\right)\left(1+12\,R\right)\cos(4\,qt)}\\
+&\quad-\frac{1}{8q} {\left(-2\,x_4x_1x_3+x_2{x_1}^2-x_2{x_3}^2\right)\sin(1+q)2\,t}\\
+&\quad-\frac{1}{8q}\,{\left(x_2{x_1}^2+2\,x_4x_1x_3-x_2{x_3}^2\right)\sin(q-1)2\,t}\\
+&\quad-\frac{1}{48{R}}\,{x_2\left({x_2}^2-3\,{x_4}^2\right)\left(1+12\,R\right)\sin(4\,qt)}\\
+&\quad-\frac{1}{2q}\,{x_4x_1x_3\sin(2\,t)}\\
+&\quad+\frac{1}{24{Rq}} x_2 \left(-q{x_2}^2+6\,R{x_1}^2 + 6\,R{x_3}^2 - 3\,q{x_4}^2\right) \sin(2qt)\\
+&\quad+\frac{1}{2q}\,{\left(2\,\zeta_pqx_2-\mu\,x_4 \right) \cos(2\,qt)}+\frac{1}{2q}\,{\left(\mu\,x_2+2\,\zeta_2qx_4\right)\sin(2\,qt)}
+\end{align*}
+\begin{align*}
+b^2_3(x,t) &= -\zeta_o x_3 - \frac{1}{4q}{x_1\left({x_2}^2+{x_4}^2\right)}+ \frac{1}{4q}{x_1\left({x_2}^2 + {x_4}^2 \right) \cos(2t)}\\
+&\quad + \frac{1}{8q}\,{\left(-{x_4}^2 x_1 + {x_2}^2 x_1 - 2\,x_2 x_4 x_3\right)\cos(1+q)2t}\\
+&\quad +\frac{1}{8q}\,{\left
+    ({x_2}^2x_1+2\,x_2x_4x_3-{x_4}^2x_1
+   \right)\cos(q-1)2\,t}\\
+&\quad - \frac{1}{4q}{x_1\left
+    (x_2-x_4\right)\left(x_2+x_4\right)\cos
+   (2\,qt)}\\
+&\quad+\frac{1}{8q}\,{\left
+    (2\,x_2x_4x_1+{x_2}^{2
+    }x_3-{x_4}^2x_3\right)\sin(1+q)2\,t}\\
+&\quad+\frac{1}{8q}\,{\left
+    (-{x_2}^2x_3+{x_4}^2x_3+2\,x_2
+    x_4x_1\right)\sin(q-1)2\,t}\\
+&\quad+\frac{1}{4q}{x_3\left({
+     x_2}^2+{x_4}^2\right
+   )\sin(2\,t)}-\frac{1}{2q}\,{x_2
+   x_4x_1\sin(2\,qt)}+\zeta_ox_1\sin(2\,t)\\
+&\quad- \zeta_o x_3 \cos(2t)
+\end{align*}
+\begin{align*}
+b^2_4(x,t) &= - \frac{1}{2q} \left(\,{\mu\,x_2 + 2\,\zeta_p q x_4}\right)\\
+&\quad- \frac{1}{16{Rq}}\,{x_2 \left(4\,R \,({x_1}^2 + {x_3}^2) + (4\,Rq - q)({x_2}^2 + {x_4}^2) \right)}\\
+&\quad + \frac{1}{4q}{x_2\left (x_1-x_3\right) \left(x_1+x_3\right)\cos(2t)}\\
+&\quad + \frac{1}{8q}\,{ \left(-2\,x_4x_1x_3+x_2{x_1}^2-x_2{x_3}^2\right)\cos(1+q)2t}\\
+&\quad +\frac{1}{8q}\,{\left(x_2{x_1}^2+2\,x_4x_1x_3-x_2{x_3}^2\right)\cos(q-1)2\,t}\\
+&\quad -\frac{1}{12{Rq}}\,{x_2\left(3\,R{x_3}^2-q{x_2}^{2}+3\,R{x_1}^2\right)\cos(2\,qt)}\\
+&\quad + \frac{1}{48{R}}\,{x_2 \left({x_2}^2 - 3{x_4}^2\right) \left(1+12\,R\right)\cos(4\,qt)}\\
+&\quad + \frac{1}{8q} {\left(2\,x_2x_1x_3 + x_4{x_1}^2 - x_4{x_3}^2\right)\sin(1+q)2\,t}\\
+&\quad + \frac{1}{8q} {\left(-x_4{x_3}^2+x_4{x_1}^2-2\,x_2x_1x_3\right)\sin(q-1)2\,t}+\frac{1}{2q}\,{x_2x_1 x_3\sin(2\,t)}\\
+&\quad - \frac{1}{24{Rq}}\,{x_4\left (6R{x_1}^2 - 3q{x_2}^2 + 6R{x_3}^2 - q{x_4}^2\right)\sin(2\,qt)}\nonumber\\
+&\quad + \frac{1}{48{R}}\,{x_4\left(-{x_4}^2+3\,{x_2}^2 \right)\left(1+12\,R\right)\sin(4\,qt)}\nonumber \\
+&\quad - \frac{1}{2q}\,{\left(\mu\,x_2+2\, \zeta_pqx_4\right)\cos(2\,qt)} +\frac{1}{2q}\,{\left(2\,\zeta_pqx_2-\mu\,x_4\right) \sin(2\,qt)}
+\end{align*}

@@ -42,7 +42,7 @@ Whereas averaging provides the diffusion matrix $\mathfrak{a} = \Aave[\Tave[\sig
 \]
 The key point is that the variance of $\tilde{\mathfrak a}$ is reproduced when $\tilde \sigma^T$ multiplies a Wiener process \citep{law82:_simul}.
 
-In the HMM, the slow equations are approximated numerically with the \emph{macrosolver}. For numerical solutions to System \eqref{e:averaged}, a stochastic ODE solver is used. The simplest of these is the Euler-Maruyama first order scheme \citep{kloeden99:_numer_solut_stoch_differ_equat}:
+In the HMM, the slow equations are approximated numerically with the \emph{macrosolver}. For numerical solutions to System \eqref{e:averaged}, a stochastic ODE solver is used. The simplest of these is the Euler-Maruyama first order scheme \citep{kloeden92:_numer_solut_stoch_differ_equat}:
 \[
 Y_{n+1} = Y_n + \tilde{\mathfrak b}_n \Delta t + \tilde \sigma_n \Xi_{n+1} \sqrt{\Delta t}
 \]

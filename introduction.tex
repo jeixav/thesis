@@ -135,7 +135,7 @@ Since the gradient and symplectic gradient produce vectors perpendicular to each
 
 This demonstrates that the dynamics of $Y_t^\epsilon$ are indeed slow compared to those of $X_t^\epsilon$.
 
-For all problems treated in this thesis, it is a given that the fast process is a Markov process, which is to say a process for which the future is independent of everything but the present (delay differential equations do not satisfy this property.) Equation \eqref{e:fast sde} has a generator (\citep[\S 7.3]{oksendal98:_stoch_differ_equat}). For $\phi \in C^2(\reals^4 \times \reals)$ this generator is:
+For all problems treated in this thesis, it is a given that the fast process is a Markov process, which is to say a process for which the future is independent of everything but the present (delay differential equations do not satisfy this property.) Equation \eqref{e:fast sde} has a generator (\citep[\S 7.3]{øksendal03:_stoch_differ_equat}). For $\phi \in C^2(\reals^4 \times \reals)$ this generator is:
 \[
 (\gen^\epsilon \phi)(x,t) = \epsilon^{-1} (b^1,\nabla \phi)(x,t) + (\gen \phi)(x,t)
 \]
@@ -179,7 +179,7 @@ for $i,j = 1,2$, where
 \Expectation \left[G_j(x,t,\xi_t) G_k (x, t + \tau, \xi_{t+\tau}) \right] d\tau
 \]
 \end{definition}
-It's worth pointing out that classical stochastic averaging theory, i.e. \citet{khas'minskii68:_ito} is sufficient to provide these results since they hold within the leaves of the reduced domain, where one need not deal with fixed points and infinite periods.
+It's worth pointing out that classical stochastic averaging theory, i.e. \citet{khasminskii68:_ito} is sufficient to provide these results since they hold within the leaves of the reduced domain, where one need not deal with fixed points and infinite periods.
 
 \begin{definition}[Generator of the reduced Markov process]
 \label{d:reduced generator}
